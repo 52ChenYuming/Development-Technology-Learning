@@ -19,67 +19,17 @@
       <text class="most-like__title">最受好评电影</text>
       <view class="most-like__list">
         <scroll-view class="lists" scroll-x="{{true}}">
-          <view class="movie-item">
+          <view class="movie-item" wx:for="{{list.movieList}}" wx:key="id">
             <view class="item-pic">
-              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
+              <image mode="widthFix" src="{{item.img}}" />
               <view class="item-score">
                 <text>观众评分</text>
-                <text>9.5</text>
+                <text>{{item.sc}}</text>
               </view>
             </view>
-            <text class="item-name">长津湖</text>
+            <text class="item-name">{{item.nm}}</text>
           </view>
-          <view class="movie-item">
-            <view class="item-pic">
-              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
-              <view class="item-score">
-                <text>观众评分</text>
-                <text>9.5</text>
-              </view>
-            </view>
-            <text class="item-name">长津湖</text>
-          </view>
-          <view class="movie-item">
-            <view class="item-pic">
-              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
-              <view class="item-score">
-                <text>观众评分</text>
-                <text>9.5</text>
-              </view>
-            </view>
-            <text class="item-name">长津湖</text>
-          </view>
-          <view class="movie-item">
-            <view class="item-pic">
-              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
-              <view class="item-score">
-                <text>观众评分</text>
-                <text>9.5</text>
-              </view>
-            </view>
-            <text class="item-name">长津湖</text>
-          </view>
-          <view class="movie-item">
-            <view class="item-pic">
-              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
-              <view class="item-score">
-                <text>观众评分</text>
-                <text>9.5</text>
-              </view>
-            </view>
-            <text class="item-name">长津湖</text>
-          </view>
-          <view class="movie-item">
-            <view class="item-pic">
-              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
-              <view class="item-score">
-                <text>观众评分</text>
-                <text>9.5</text>
-              </view>
-            </view>
-            <text class="item-name">长津湖</text>
-          </view>
-        </scroll-view>
+       </scroll-view>
       </view>
     </view>
   </scroll-view>

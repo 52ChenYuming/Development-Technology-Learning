@@ -24,11 +24,17 @@ Page({
      */
     onLoad: function (options) {
         // console.log('onLoad');
+        // 保留this值，防止后续this指向被干扰
+        let that = this;
         wx.request({
             url:'https://www.fastmock.site/mock/39ac87de3060aa2bb2ba20a0ff375c81/cat-movie/mostLike',
             method:'GET',
             success(res) {
-                console.log(res);
+                // console.log(res);
+                that.setData({
+                    list:res.data
+                })
+                console.log(that.data.list);
             }
         })
     },
