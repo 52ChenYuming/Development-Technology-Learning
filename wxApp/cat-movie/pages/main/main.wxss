@@ -19,7 +19,6 @@
   justify-content: left;
   align-items: center;
 }
-
 .header_hd text{
   color: #666;
   font-size: 14px;
@@ -32,6 +31,7 @@
   border-right: 5px solid transparent;
   margin-left: 1px;
 }
+
 .header_bd{
   flex: 1;
   text-align: center;
@@ -49,11 +49,12 @@
 .bottomLine{
   width: 56px;
   height: 3px;
-  background-color: #ef4238;
+  background: #ef4238;
   position: absolute;
   bottom: 0;
   transition: left 0.5s;
 }
+
 .header_ft{
   width: 45px;
   height: 45px;
@@ -61,9 +62,72 @@
   line-height: 45px;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 .header_ft image{
   width: 23px;
   height: 23px;
+}
+
+.most-like{
+  padding: 12px 12px 15px 12px;
+  background: #fff;
+}
+.most-like__title{
+  font-size: 14px;
+  color: #333;
+  display: block;
+  margin-bottom: 12px;
+}
+.most-like__list{
+  width: 100%;
+  white-space: nowrap;
+
+}
+
+.lists{
+  width: 100%;
+}
+.movie-item{
+  display: inline-block;
+  margin-right: 10px;
+}
+.movie-item:last-child{
+  margin-right: 0;
+}
+.movie-item:first-child{
+  margin-left: 0;
+}
+.item-pic{
+  width: 85px;
+  height: 115px;
+  overflow: hidden;
+  position: relative;
+}
+.item-pic image{
+  width: 100%;
+}
+.item-score{
+  box-sizing: border-box;
+  color: #faaf00;
+  position: absolute;
+  width: 100%;
+  font-size: 11px;
+  bottom: 2px;
+  padding: 0 4px;
+  display: flex;
+  justify-content: space-between;
+}
+.item-name{
+  display: block;
+  font-size: 13px;
+  color: #222;
+  margin: 4px 0;
+  width: 85px;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 超出者隐藏 */
+  overflow: hidden;
+  /* 文本超出者隐藏 */
+  text-overflow: ellipsis;
 }

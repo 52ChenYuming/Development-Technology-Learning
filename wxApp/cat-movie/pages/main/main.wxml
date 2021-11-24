@@ -1,19 +1,86 @@
-<!--pages/main/main.wxml-->
+<!-- pages/main/main.wxml -->
 <view class="container">
-	<scroll-view scroll-y="{{true}}" style="height: 100%;">
-  <view class="header">
-    <view class="header_hd">
-      <text>南昌</text>
-      <view class="downtips"></view>
+  <scroll-view scroll-y="{{true}}" style="height: 100%">
+    <view class="header">
+      <view class="header_hd">
+        <text>南昌</text>
+        <view class="downtips"></view>
+      </view>
+      <view class="header_bd">
+        <view class="header_bd-hot header_bd-btn" bindtap="tabChangeHot">正在上映</view>
+        <view class="header_bd-wating header_bd-btn" bindtap="tabChangeWating">即将上映</view>
+        <view class="bottomLine" style="left: {{isLeft ? '73px' : '143px'}}"></view>
+      </view>
+      <view class="header_ft">
+        <image src="../../images/icon_magnifier.png" />
+      </view>
     </view>
-    <view class="header_bd">
-      <view class="header_bd-hot header_bd-btn" bindtap="tabChangeHot">正在上映</view>
-      <view class="header_bd-wating header_bd-btn" bindtap="tabChangeWating">即将上映</view>
-      <view class="bottomLine" style="left: {{isLeft?'73px':'143px'}};"></view>
+    <view class="most-like">
+      <text class="most-like__title">最受好评电影</text>
+      <view class="most-like__list">
+        <scroll-view class="lists" scroll-x="{{true}}">
+          <view class="movie-item">
+            <view class="item-pic">
+              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
+              <view class="item-score">
+                <text>观众评分</text>
+                <text>9.5</text>
+              </view>
+            </view>
+            <text class="item-name">长津湖</text>
+          </view>
+          <view class="movie-item">
+            <view class="item-pic">
+              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
+              <view class="item-score">
+                <text>观众评分</text>
+                <text>9.5</text>
+              </view>
+            </view>
+            <text class="item-name">长津湖</text>
+          </view>
+          <view class="movie-item">
+            <view class="item-pic">
+              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
+              <view class="item-score">
+                <text>观众评分</text>
+                <text>9.5</text>
+              </view>
+            </view>
+            <text class="item-name">长津湖</text>
+          </view>
+          <view class="movie-item">
+            <view class="item-pic">
+              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
+              <view class="item-score">
+                <text>观众评分</text>
+                <text>9.5</text>
+              </view>
+            </view>
+            <text class="item-name">长津湖</text>
+          </view>
+          <view class="movie-item">
+            <view class="item-pic">
+              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
+              <view class="item-score">
+                <text>观众评分</text>
+                <text>9.5</text>
+              </view>
+            </view>
+            <text class="item-name">长津湖</text>
+          </view>
+          <view class="movie-item">
+            <view class="item-pic">
+              <image mode="widthFix" src="https://p0.meituan.net/170.230/movie/0e81560dc9910a6a658a82ec7a054ceb5075992.jpg" />
+              <view class="item-score">
+                <text>观众评分</text>
+                <text>9.5</text>
+              </view>
+            </view>
+            <text class="item-name">长津湖</text>
+          </view>
+        </scroll-view>
+      </view>
     </view>
-    <view class="header_ft">
-      <image src="../../images/icon_magnifier.png"/>
-    </view>
-  </view>
-	</scroll-view>
+  </scroll-view>
 </view>

@@ -23,28 +23,34 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        // console.log('onLoad');
+        wx.request({
+            url:'https://www.fastmock.site/mock/39ac87de3060aa2bb2ba20a0ff375c81/cat-movie/mostLike',
+            method:'GET',
+            success(res) {
+                console.log(res);
+            }
+        })
     },
-
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        console.log('onReady');
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        console.log('onShow');
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-
+        console.log('onHide');
     },
 
     /**
