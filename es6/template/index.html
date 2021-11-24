@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let chior = []; // 合唱团 
+        let duck = {
+                duckSinging: function() {
+                    console.log('嘎嘎嘎');
+                }
+            }
+            // 999 
+        for (let i = 0; i < 999; i++) {
+            if (checkIsDuck(duck)) {
+                chior.push(duck)
+            }
+        }
+        // chior.push(duck)
+        let chick = {
+            // 只要有两条腿，并且嘎嘎嘎叫的就是鸭子
+            duckSinging: function() {
+                console.log('嘎嘎嘎')
+            }
+        }
+        if (checkIsDuck(chick)) {
+            chior.push(chick);
+        }
+
+        /*
+         * @func 检验是否是鸭子
+         * @params obj  {}
+         * @return boolean 
+         */
+        function checkIsDuck(obj) {
+            if (obj.hasOwnProperty('duckSinging') &&
+                typeof obj.duckSinging == 'function') {
+                return true;
+            }
+            return false;
+        }
+
+        if (chior.length >= 1000) {
+            console.log('招募工作已完成, ')
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // {}用于创建对象 key:value
+        // 男主角
+        let Cym = {
+                hobbies: ["羽毛球", "干饭"],
+                name: '陈煜明',
+                sex: '男',
+                hometown: '永丰',
+                collage: '江西财经大学',
+                room: 'NB641',
+                isSingle: true,
+                age: 18,
+                appearance: 70,
+                sendFlower(target) {
+                    target.receiveFlower(this)
+                }
+            }
+            //未定义，undefined表示值未定义，在内存中的分配没有确定
+        let num;
+        console.log(num);
+        num = 1;
+        let a = null;
+        //送花
+        //女主角
+        let Cyj = {
+            name: '陈雅洁',
+            mood: 50,
+            receiveFlower(sender) {
+                // if (sender.appearance < 90) {
+                //     console.log('不好意思，你是个好人');
+                // } else {
+                //     console.log('万达走一波');
+                // }
+                if (this.mood < 80) {
+                    console.log('gun.......');
+                } else {
+                    console.log('万达走一波');
+                }
+                console.log(this.name + '收到了' + sender.name + '送的花');
+            }
+
+        }
+        let Cam = {
+            name: '陈爱明',
+            hometown: '永丰',
+            receiveFlower(sender) {
+                // if (sender.name == '陈煜明') {
+                //     console.log('陈煜明，让我们在一起吧！');
+                // } else {
+                //     Cyj.receiveFlower(sender);
+                // }
+                setTimeout(() => {
+                    Cyj.mood = 90;
+                    Cyj.receiveFlower(Cym)
+                }, 3000)
+                Cyj.receiveFlower(sender);
+            }
+        }
+    </script>
+</body>
+
+</html>

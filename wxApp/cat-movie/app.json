@@ -1,0 +1,39 @@
+{
+  "pages":[
+  "pages/main/main",
+  "pages/lesson/lesson",
+  "pages/mine/mine"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "猫眼电影",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color": "#515151",
+    "selectedColor": "#3f97ff",
+    "list": [
+      {
+      "pagePath": "pages/main/main",
+      "text": "首页",
+      "iconPath": "images/shouye.png",
+      "selectedIconPath": "images/hover-shouye.png"
+    },
+    {
+      "pagePath": "pages/lesson/lesson",
+      "text": "课程",
+      "iconPath": "images/class.png",
+      "selectedIconPath": "images/hover-class.png"
+    },
+    {
+      "pagePath": "pages/mine/mine",
+      "text": "我的",
+      "iconPath": "images/mine.png",
+      "selectedIconPath": "images/hover-mine.png"
+    }
+  ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

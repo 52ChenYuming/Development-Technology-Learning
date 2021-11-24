@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 200px;
+            width: 200px;
+            background-color: green;
+            /* display: none;让盒子不显示 */
+            /*opacity: 0;可以通过transition实现过渡效果*/
+            /* visibility: hidden; */
+            /* position: absolute;
+            left: -9999px;
+            加了定位之后就脱离了文档流 */
+            /* transform: scale(0); */
+        }
+        
+        .box:hover {
+            opacity: 1;
+            transition: 5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>

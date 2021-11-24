@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=uepZwmCORjYrbfP6nAncguX2kKqjfc9B"></script>
+  <title>百度地图-浏览器精准定位</title>
+  <style>
+    html,
+    body,
+    #container {
+      height: 100%;
+    }
+
+    .info {
+      width: 26rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="allmap" style="width: 1000px;height: 800px;"></div>
+  <p><button onclick="geoFindMe()">show my location</button></p>
+  <div id="out"></div>
+
+  <!-- <script>
+    var latitude;
+    var longitude;
+
+    // GPS坐标
+    // var x = latitude;
+    // var y = longitude;
+    var x = 116.32715863448607;
+    var y = 39.990912172420714;
+    var point = new BMapGL.Point(x, y)
+
+    // 初始化地图
+    var map = new BMapGL.Map("allmap");
+    map.centerAndZoom(point, 15);
+    map.addControl(new BMapGL.NavigationControl());    // 添加控件
+
+    // 添加gps marker 和label
+    var markergg = new BMapGL.Marker(point)
+    map.addOverlay(markergg) // 添加GPS marker
+    var labelgg = new BMapGL.Label('未转换的GPS坐标（错误）', {offset: new BMapGL.Size(20, -10)})
+    markergg.setLabel(labelgg)
+
+
+    translateCallback = function(data) {
+      if (data.status === 0) {
+        var marker = new BMapGL.Marker(data.points[0])
+        map.addOverlay(marker)
+        console.log(123);
+        var label = new BMapGL.Label('转换后的百度坐标（正确）', {offset: new BMapGL.Size(20, -10)})
+        marker.setLabel(label)
+        map.setCenter(data.points[0])
+      }
+    }
+
+
+    setTimeout(function() {
+      var convertor = new BMapGL.Convertor()
+      var pointArr = []
+      pointArr.push(point)
+      convertor.translate(pointArr, 1, 5, translateCallback)
+    }, 1000)
+  </script> -->
+  <script>
+    var latitude;
+    var longitude;
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function geoFindMe() {
+      var output = document.getElementById('out')
+      if (!navigator.geolocation) {
+        output.innerHTML = '<p>您的浏览器不支持地理位置</p>'
+        return
+      }
+
+      function success(position) {
+        console.log(1);
+        console.log(position);
+      }
+
+      function error() {
+        console.log(0);
+        output.innerHTML = '无法获取您的位置'
+      }
+
+      output.innerHTML = '<p>Loading...</p>'
+      navigator.geolocation.getCurrentPosition(success, error, options)
+    }
+
+    // GPS坐标
+    var x = latitude;
+    var y = longitude;
+    var point = new BMapGL.Point(x, y)
+
+    // 初始化地图
+    var map = new BMapGL.Map("allmap");
+    map.centerAndZoom(point, 15);
+    map.addControl(new BMapGL.NavigationControl());    // 添加控件
+
+    // 添加gps marker 和label
+    var markergg = new BMapGL.Marker(point)
+    map.addOverlay(markergg) // 添加GPS marker
+    var labelgg = new BMapGL.Label('未转换的GPS坐标（错误）', { offset: new BMapGL.Size(20, -10) })
+    markergg.setLabel(labelgg)
+
+
+    translateCallback = function (data) {
+      if (data.status === 0) {
+        var marker = new BMapGL.Marker(data.points[0])
+        map.addOverlay(marker)
+        var label = new BMapGL.Label('转换后的百度坐标（正确）', { offset: new BMapGL.Size(20, -10) })
+        marker.setLabel(label)
+        map.setCenter(data.points[0])
+      }
+    }
+
+
+    setTimeout(function () {
+      var convertor = new BMapGL.Convertor()
+      var pointArr = []
+      pointArr.push(point)
+      convertor.translate(pointArr, 1, 5, translateCallback)
+    }, 1000)
+  </script>
+</body>
+
+</html>

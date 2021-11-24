@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .topDiv{
+      width: 500px;
+      border: 2px solid #000;
+    }
+    .floatDiv{
+      width: 100px;
+      height: 100px;
+      border: 2px dotted red;
+      color: red;
+      margin: 4px;
+      float: left;
+    }
+
+    .bottomDiv{
+      width: 500px;
+      height: 100px;
+      margin: 5px 0;
+      border: 2px dotted #000;
+    }
+
+    .topDiv::after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div class="topDiv">
+    <div class="floatDiv">float left</div>
+    <div class="textDiv">出席这次全会的有，中央委员197人，候补中央委员151人。中央纪律检查委员会常务委员会委员和有关方面负责同志列席会议。党的十九大代表中部分基层同志和专家学者也列席会议。</div>
+
+  </div>
+
+  <div class="bottomDiv">全会听取和讨论了习近平受中央政治局委托作的工作报告，审议通过了《中共中央关于党的百年奋斗重大成就和历史经验的决议》，审议通过了《关于召开党的第二十次全国代表大会的决议》</div>
+</body>
+</html>

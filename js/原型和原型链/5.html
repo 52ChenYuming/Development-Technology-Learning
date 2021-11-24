@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person() {
+
+    }
+    var person = new Person();
+    console.log(person);//{__proto__:...}
+    console.log(Person.prototype);
+
+    function Grand() {
+
+    }
+    function Father() {
+      this.name = 'jiajun'
+      this.fortue = {
+        card1: 'visa'
+      }
+      this.num = 100;
+
+    }
+    var father = new Father();
+    function Son() {
+      this.hobbit = 'reading';
+    }
+    son.fortue.card2 = 'master';
+    console.log(son.hobbit);
+    console.log(son.name);
+  </script>
+</body>
+
+</html>

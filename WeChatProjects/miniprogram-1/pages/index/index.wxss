@@ -1,0 +1,47 @@
+.section{
+  height: 100vh;
+}
+.content{
+  /* 小程序中一直用rpx */
+  padding: 48rpx 48rpx 64rpx;
+}
+page{
+  line-height: 1.5;
+  font-size: 32rpx;
+  background-color: #f8f8f8;
+}
+image{
+  display: block;
+  width:100%;
+}
+.hero.white{
+  background: #fff;
+}
+.hero image,.hero video{
+  height: 38.2vh;
+}
+.hero .content{
+  padding-top: 10vh;
+}
+.hero .content.centered{
+  text-align: center;
+}
+.sub-header{
+  font-size: 32rpx;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.85)
+}
+
+.hero .header{
+  font-size: 72rpx;
+  font-weight: bold;
+  margin: 0 12% 8px;
+}
+.description{
+  padding: 0 12%;
+  margin-bottom: 32px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 32rpx;
+}

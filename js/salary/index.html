@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+       *@function 计算工资
+       *@params monthSalary月薪 数值类型 number
+       *        level[S A B C D]
+       *@return total number 总工资
+       */
+      function calculateSalary(monthSalary, level = 'C') {
+        //默认是C
+        switch (level) {
+          case 'SSP':
+            return performanceSSP(monthSalary)
+            break
+          case 'S':
+            return performanceS(monthSalary)
+            break
+          case 'A':
+            return performanceA(monthSalary)
+            break
+          case 'B':
+            return performanceB(monthSalary)
+            break
+          case 'C':
+            return performanceC(monthSalary)
+            break
+          case 'D':
+            return performanceD(monthSalary)
+            break
+        }
+      }
+
+      //财务执行
+      //解耦等级的工资制定
+      //A 等级的工资计算方式
+      const performanceA = function (salary) {
+        return salary * (12 + 4)
+      }
+      //B 等级的工资计算方式
+      const performanceB = function (salary) {
+        return salary * (12 + 3)
+      }
+      //C 等级的工资计算方式
+      const performanceC = function (salary) {
+        return salary * (12 + 2)
+      }
+      //D 等级的工资计算方式
+      const performanceD = function (salary) {
+        return salary * (12 + 1)
+      }
+      const performanceS = function (salary) {
+        return salary * (12 + 6)
+      }
+      const performanceSSP = function (salary) {
+        return salary * (12 + 10)
+      }
+      let total = calculateSalary(20000, 'S')
+      let anthoerTotal = calculateSalary(7000)
+      let mostTotal = calculateSalary(26000, 'SSP')
+      console.log(total, anthoerTotal, mostTotal)
+    </script>
+  </body>
+</html>

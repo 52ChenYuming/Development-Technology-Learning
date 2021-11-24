@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .header,
+  .footer {
+    height: 50px;
+    width: 100%;
+    background-color: gray;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 50px;
+  }
+
+  .left,
+  .right,
+  details {
+    float: left;
+  }
+
+  .content {
+    overflow: hidden;
+  }
+
+  .left,
+  .right {
+    width: 200px;
+    height: 200px;
+    background: pink;
+  }
+
+  .detail {
+    width: 100%;
+    background: green;
+  }
+
+  .detail-inner {
+    margin: 0 200px;
+  }
+</style>
+
+<body>
+  <div class="wrap">
+    <div class="header">header</div>
+    <div class="content">
+      <div class="detail">
+        <div class="detail-inner">
+          内容内容内容！！！
+        </div>
+      </div>
+      <div class="left">广告</div>
+
+      <div class="right">广告</div>
+    </div>
+    <div class="footer">footer</div>
+  </div>
+</body>
+
+</html>

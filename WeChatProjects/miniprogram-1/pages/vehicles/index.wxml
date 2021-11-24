@@ -1,0 +1,42 @@
+
+<view class="section">
+    <block wx:if="{{!item.image}}">
+        <view>
+    请稍等，数据加载中
+        </view>
+    </block>
+    <view class="cover">
+        <image  src="{{item.image}}" mode="aspectFit"  />
+        <view class="content">
+            <view class="header">
+                {{item.header}}
+                <view class="sub-header">
+                    {{item.sub_header}}
+                </view>
+            </view>
+            <view class="meta">{{item.meta.price}}</view>
+        </view>
+    </view>
+    <view class="spec">
+        <view class="item">
+            <view class="header">
+                二氧化碳排放
+            </view>
+            <view class="value">
+                <text>{{item.meta.carbon_dioxide}}</text>克/公里
+            </view>
+        </view>
+        <view class="item">
+            <view class="header">
+                综合燃油
+            </view>
+            <view class="value">
+                <text>{{item.meta.fuel}}</text>升/公里
+            </view>
+        </view>
+    </view>
+    <view class="action">
+        <view class="description">{{item.description}}</view>
+        <button class="button primary" bindtap="testDrive">预约试驾</button>
+    </view>
+</view>   

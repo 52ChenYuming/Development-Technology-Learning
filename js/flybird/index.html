@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="wrapBg">
+        <div id="headTitle">
+            <img src="./img/bird0.png" alt="" id="headBird">
+        </div>
+        <button id="startBtn"></button>
+        <div id="grassLand1"></div>
+        <div id="grassLand2"></div>
+    </div>
+
+    <script src="./js/bird.js"></script>
+    <script src="./js/block.js"></script>
+    <script>
+        let jsWrapBg = document.getElementById('wrapBg')
+        let jsHeadBird = document.getElementById('headBird');
+        //控制headTitle容器的top值的加减
+        let jsHeadTitle = document.getElementById('headTitle');
+        // console.log(jsHeadTitle);
+        var Y = 3; // 标题摆动的幅度
+        let headWaveTimer = setInterval(headWave, 200);
+
+        function headWave() {
+            Y = Y * -1;
+            jsHeadTitle.style.top = jsHeadTitle.offsetTop + Y + 'px';
+            // 翅膀煽动
+            if (Y > 0) {
+                jsHeadBird.src = "./img/bird1.png";
+            } else {
+                jsHeadBird.src = "./img/bird0.png";
+            }
+        }
+
+        //草地
+        let jsGrassland1 = document.getElementById('grassLand1');
+        let jsGrassland2 = document.getElementById('grassLand2');
+        setInterval(landRun, 30); //草地移动
+        function landRun() {
+            if (jsGrassland1.offsetLeft <= -343) {
+                jsGrassland1.style.left = 343 + 'px';
+            }
+            if (jsGrassland2.offsetLeft <= -343) {
+                jsGrassland2.style.left = 343 + 'px';
+            }
+            jsGrassland1.style.left = jsGrassland1.offsetLeft - 3 + 'px';
+            jsGrassland2.style.left = jsGrassland2.offsetLeft - 3 + 'px';
+
+        }
+
+        //开始游戏
+        let jsStartBtn = document.getElementById('startBtn');
+        jsStartBtn.onclick = function() {
+            // console.log('hello');
+            jsHeadTitle.style.display = 'none'; //隐藏标题
+            clearInterval(headWaveTimer);
+            jsStartBtn.style.display = 'none';
+            //出现一只小鸟
+            bird.showBird(jsWrapBg);
+            bird.flyBird();
+            bird.wingWave();
+            jsWrapBg.onclick = function() {
+                bird.fallSpeed = -8;
+            };
+            //出现管道
+            let b = new Block();
+            b.createBlock();
+        }
+    </script>
+</body>
+
+</html>
