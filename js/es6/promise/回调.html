@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function getMusic() {
+      $.ajax({
+        url: 'https://autumnfish.cn/search?keywords="嘉宾"',
+        method: 'GET',
+        success: function (res) {
+          console.log(res.result.songs[0].name);
+          singSong();
+        }
+      })
+    }
+    getMusic()
+
+    function singSong() {
+      console.log('sing...');
+    }
+    // getMusic();
+    // singSong();
+    // 执行结果是先sing再拿到歌，理由是getMusic是异步函数，因为去向服务器请求数据是需要时间的
+    // 以前想要正确执行可以使用回调函数，在getMUsic()函数里面调用singSong()
+  </script>
+</body>
+
+</html>
