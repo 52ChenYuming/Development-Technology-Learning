@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <title>ajax</title>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+  <!-- AJAX对后端数据请求方法 -->
+  <!-- <script>
+    // let app = document.getElementById('app');
+    // let app = $('#app');
+
+    $.ajax({
+      url: 'https://autumnfish.cn/search',
+      method: 'GET',
+      data: {
+        keywords: '嘉宾',
+      },
+      dataType: 'JSON',
+      success: (res) => {
+        console.log(res);
+        showList(res.result.songs)
+      }
+    })
+
+    function showList(songList) {
+      let ol = document.createElement('ol');
+      for (let item of songList) {
+        // 创建li
+        let li = document.createElement('li');
+        //改变li中的值
+        // li.innerHTML = item.name + item.artists.name;
+        li.innerHTML = `${item.name} ---- ${item.artists[0].name}`;
+        ol.appendChild(li);
+      }
+      app.appendChild(ol);
+    }
+    console.log(app);
+  </script> -->
+
+  <!-- 原生JS get对后端数据方法 -->
+  <!-- <script>
+    // 创建请求实例对象
+    var myAjax = new XMLHttpRequest();
+    // 设置请求的url参数，这是做准备工作
+    myAjax.open('get', 'https://autumnfish.cn/search?keywords="嘉宾"');
+    // 发送请求
+    myAjax.send();
+    myAjax.onreadystatechange = function () {
+      if (myAjax.readyState === 4 && myAjax.status === 200) {
+        console.log(JSON.parse(myAjax.responseText));
+      }
+    }
+  </script> -->
+
+  <!-- 自己定义一个对后端请求的方法 -->
+  <!-- <script>
+    function request(method, url, data, success) {
+      var ajax = new XMLHttpRequest();
+      if (method.toLowerCase() == 'get') {
+        if (data) {
+          // url += '?';
+          // url += data;
+          url = `${url + '?'}${data}`;
+        } else {
+
+        }
+        ajax.open(method, url);
+        ajax.send();
+      } else {//假设除了get 就是 post
+      }
+      ajax.onreadystatechange = function () {
+        if (ajax.readyState === 4 && ajax.status === 200) {
+          success(JSON.parse(ajax.responseText));
+        }
+      }
+    }
+
+    request('get', 'https://autumnfish.cn/search', 'keywords="Stay"', success);
+    function success(res) {
+      console.log(res);
+    }
+  </script> -->
+
+  <!-- 原生JS post方法对后端数据方法 -->
+  <script>
+    // 创建请求实例对象
+    var myAjax = new XMLHttpRequest();
+    // 设置请求的url参数，这是做准备工作
+    myAjax.open
+      ('post', 'https://www.fastmock.site/mock/515309f6448031c6323c47dea002d91d/xhr/music');
+    // 发送请求
+    myAjax.setRequestHeader('Content-Type', 'application/x-www-form');
+    myAjax.send('keywords="等你下课"');
+    myAjax.onreadystatechange = function () {
+      if (myAjax.readyState === 4 && myAjax.status === 200) {
+        console.log(JSON.parse(myAjax.responseText));
+      }
+    }
+  </script>
+
+</body>
+
+</html>
