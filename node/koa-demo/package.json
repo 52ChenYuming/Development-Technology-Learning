@@ -15,6 +15,7 @@
     "koa": "^2.13.4",
     "koa-body": "^4.2.0",
     "koa-compose": "^4.1.0",
+    "koa-cors": "0.0.16",
     "koa-route": "^3.2.0",
     "koa-static": "^5.0.0"
   }

@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <title>Document</title>
 </head>
 
 <body>
-    <script>
-        $.ajax({
-            url: 'localhost:3000',
-            type: 'get',
-            contentType: 'application/json;charest=UTF-8',
-            success(res) {
-                console.log(res);
-            }
-        })
-    </script>
+  <script>
+    $.ajax({
+      url: 'http://localhost:3000',
+      // 希望接受json格式数据
+      headers: { 'Accept': 'application/json' },
+      success(res) {
+        console.log(res);
+      }
+    })
+  </script>
 </body>
 
 </html>
