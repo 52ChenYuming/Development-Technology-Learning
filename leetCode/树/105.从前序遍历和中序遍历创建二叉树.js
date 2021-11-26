@@ -11,6 +11,7 @@
  * @param {number[]} inorder
  * @return {TreeNode}
  */
+// https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/ding-wei-chu-gen-jie-dian-de-wei-zhi-hua-fen-zuo-y/
 // 基础解法
 var buildTree = (preorder, inorder) => {
   if (preorder.length == 0) return null;
