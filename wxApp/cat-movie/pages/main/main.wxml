@@ -29,7 +29,7 @@
             </view>
             <text class="item-name">{{item.nm}}</text>
           </view>
-       </scroll-view>
+        </scroll-view>
       </view>
     </view>
   </scroll-view>
