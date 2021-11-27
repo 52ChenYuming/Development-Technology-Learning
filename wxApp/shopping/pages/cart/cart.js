@@ -31,6 +31,7 @@ Page({
         })
       }
     }
+    this.getTotalPrice();
   },
   selectAll(){
 
@@ -45,9 +46,25 @@ Page({
        selectAllStatus:selectAllStatus,
        carts:carts
      })
+     this.getTotalPrice();
   },
   getTotalPrice(){
-
+    let totalPrice = this.data.totalPrice;
+    // 防止原来值的影响，将totalPrice重新设置为0
+    totalPrice=0;
+    // 获取购物车数据
+    let carts = this.data.carts;
+    //  获取totalPrice数据
+    for (let index = 0; index < carts.length; index++) {
+      if(carts[index].selected){
+      // sum为每种商品的总价格
+      let sum = carts[index].num * carts[index].price;
+      totalPrice+=sum; 
+      }
+    }
+    this.setData({
+      totalPrice: totalPrice,
+    });
   },
 
   /**
@@ -67,17 +84,17 @@ Page({
 
       },
       complete:()=>{
-
-      }
-
+        this.getTotalPrice();
+      },
     });
+    this.getTotalPrice();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
@@ -122,3 +139,4 @@ Page({
 
   }
 })
+

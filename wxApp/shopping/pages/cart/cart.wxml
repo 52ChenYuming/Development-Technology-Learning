@@ -26,7 +26,7 @@
         <icon wx:if="{{selectAllStatus}}" class="total-select" type="success" color="red" bindtap="selectAll" />
         <icon wx:else="" class="total-select" type="success" color="#d9d9d9" bindtap="selectAll" />
         <text>全选</text>
-        <text class="cart-total-price">${{item.totalPrice}}</text>
+        <text class="cart-total-price" >${{totalPrice}}</text>
       </view>
       <view class="pay">去结算</view>
     </view>
