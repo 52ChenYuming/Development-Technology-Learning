@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/cart/cart",
     "pages/index/index",
     "pages/category/category",
-    "pages/cart/cart",
     "pages/user/user",
     "pages/detail/detail"
   ],
@@ -23,16 +23,16 @@
         "selectedIconPath": "image/11.png"
       },
       {
-        "pagePath": "pages/cart/cart",
-        "text": "分类",
-        "iconPath": "image/22.png",
-        "selectedIconPath": "image/21.png"
-      },
-      {
         "pagePath": "pages/category/category",
         "text": "分类",
         "iconPath": "image/32.png",
         "selectedIconPath": "image/31.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "image/22.png",
+        "selectedIconPath": "image/21.png"
       },
       {
         "pagePath": "pages/user/user",

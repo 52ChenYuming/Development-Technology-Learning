@@ -45,7 +45,7 @@
             </view>
           </navigator>
         </view>
-        <view class="newest-list">
+      <view class="newest-list">
           <navigator url="">
             <image src="/image/s5.png"></image>
             <view class="newest-name">
