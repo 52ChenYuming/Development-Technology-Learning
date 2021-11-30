@@ -1,0 +1,2 @@
+<!--pages/home/home.wxml-->
+<nav-bar statusBarColor="#42BD55"></nav-bar>
