@@ -5,8 +5,8 @@
   <view class="container">
     <!-- 手机头部显示电量 -->
     <view style="{{statusBarStyle}}"></view>
-    <view class="nav-bar">
-      首页
+    <view class="nav-bar" style="{{navBarStyle}}"> 
+      {{title}}
     </view>
   </view>
 </view>

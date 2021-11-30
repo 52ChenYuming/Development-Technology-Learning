@@ -1,2 +1,2 @@
 <!--pages/home/home.wxml-->
-<nav-bar statusBarColor="#42BD55"></nav-bar>
+<nav-bar statusBarColor="#42BD55" navBarColor='#42BD55' titleColor='#fff' title="首页"></nav-bar>
