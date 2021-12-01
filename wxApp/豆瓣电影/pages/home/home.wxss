@@ -1,1 +1,31 @@
 /* pages/home/home.wxss */
+.weui-search-bar{
+  background-color: #42BD55 !important;
+}
+.row{
+  margin-top: 30rpx;
+}
+.title-wrapper{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30rpx;
+  margin-bottom: 30rpx;
+  align-content: center;
+}
+.title-wrapper .title{
+  font-weight: bold;
+  font-size: 34rpx;
+}
+.title-right{
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+}
+.title-right .more{
+  font-size: 30rpx;
+  color: #42BD55;
+}
+.scroll-view__movie{
+  height: 402rpx;
+  white-space: nowrap;
+}

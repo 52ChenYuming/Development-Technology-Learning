@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "nav-bar":"../../component/nav-bar/nav-bar"
+    "nav-bar":"../../component/nav-bar/nav-bar",
+    "mp-searchbar": "/component/weui-miniprogram/searchbar/searchbar",
+    "mp-icon": "/component/weui-miniprogram/icon/icon",
+    "movieItem":"/component/movieItem/movieItem"
   }
 }

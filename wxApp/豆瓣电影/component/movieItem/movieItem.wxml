@@ -1,0 +1,11 @@
+<!--component/movieItem/movieItem.wxml-->
+<view class="item">
+  <view class="info">
+  <image class="img" src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p480747492.webp"/>
+  <view class="name">肖生克的救赎</view>
+  <view class="score-wrapper">
+    <ratingStar score="95"/>
+    <view class="score">9.5</view>
+  </view>
+  </view>
+</view>
