@@ -4,7 +4,16 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    movie:{
+      type: Object,
+      observer: function(newVal, oldVal, path) {
+        newVal.img = newVal.img.replace('w.h', '128.180')
+        this.setData({
+          movie: newVal
+        })
+        console.log(this.data.movieItem);
+      }
+    }
   },
 
   /**

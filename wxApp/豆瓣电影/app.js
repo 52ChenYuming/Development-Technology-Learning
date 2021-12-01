@@ -7,7 +7,10 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 设置nav-Bar高度
-    wx.db = {}
+    wx.db = {};
+    wx.db.url = (url) =>{
+      return `https://m.maoyan.com/ajax${url}`;
+    }
     // 获取用户手机系统类型
     let info = wx.getSystemInfoSync();
     wx.db.statusBarHeight = info.statusBarHeight;

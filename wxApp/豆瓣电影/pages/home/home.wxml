@@ -1,9 +1,9 @@
 <nav-bar title="首页" statusBarColor="#42BD55" navBarColor='#42BD55' titleColor='#fff' ></nav-bar>
 <view>
   <mp-searchbar></mp-searchbar>
-  <view class="row">
+  <view class="row" wx:for="{{allMovies}}" wx:key="index" >
     <view class="title-wrapper">
-      <view class="title">新片榜</view>
+      <view class="title">{{item.title}}</view>
       <view class="title-right">
         <view class="more">查看更多</view>
         <view class="arrow">
@@ -11,9 +11,10 @@
         </view>
       </view>
     </view>
-    <scroll-view scroll-x="{{true}}" class="scroll-view__movie">
+    <scroll-view  scroll-x="{{true}}" class="scroll-view__movie">
       <!-- 电影列表 -->
-      <movieItem class="item"/>
+      <movieItem class="item" wx:for="{{item.movies}}" wx:key="index" wx:for-item="movie" 
+      movie="{{movie}}"/>
     </scroll-view>
   </view>
 </view>

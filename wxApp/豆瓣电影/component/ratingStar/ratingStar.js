@@ -26,7 +26,7 @@ Component({
         this.setData({
           stars:stars
         })
-        console.log(stars);
+        // console.log(stars);
       }
     },
     iconSize:{

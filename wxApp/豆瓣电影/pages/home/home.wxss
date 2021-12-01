@@ -29,3 +29,6 @@
   height: 402rpx;
   white-space: nowrap;
 }
+.item{
+  margin-left: 30rpx;
+}
