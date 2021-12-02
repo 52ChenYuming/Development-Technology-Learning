@@ -17,3 +17,4 @@ var findSmallestSetOfVertices = function (n, edges) {
   }
   return res;
 };
+// 1557. 可以到达所有点的最少点数目.js
