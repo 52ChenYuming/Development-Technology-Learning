@@ -27,6 +27,8 @@ Page({
     this.getCity((city)=>{
       this.loadDate(1,{ci:city});//即将上映
     });
+    // this.loadDate(2);
+    // this.loadDate(3);
   },
   //获取电影数据
   loadDate(index,params={}){
@@ -47,7 +49,7 @@ Page({
       method: 'GET',
       data: options,
       success: (res) => {
-        // console.log(res);
+        console.log(res);
         let movies = res.data.movieList || res.data.coming;
         for(let i =0; i<movies.length;i++){
           obj.movies.push(movies[i]);
@@ -71,7 +73,7 @@ Page({
       fail: ()=>{}, 
       success: (data)=>{
         // 拿到城市编码
-        console.log(data.originalData.result.cityCode);
+        // console.log(data.originalData.result.cityCode);
         cb(data.originalData.result.cityCode);
       }, 
     });
