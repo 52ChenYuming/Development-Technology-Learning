@@ -1,6 +1,5 @@
 // pages/home/home.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -23,11 +22,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadDate(0)//正在热映
+    this.loadDate(0);//正在热映
+    this.loadDate(1);//即将上映
   },
   //获取电影数据
   loadDate(index,params){
     let obj = this.data.allMovies[index];
+    // console.log(obj);
     let url = wx.db.url(obj.url);
     // console.log(url);
     wx.request({
@@ -36,14 +37,20 @@ Page({
       header: {'content-type':'application/json'},
       method: 'GET',
       success: (res) => {
-        // console.log(res);
-        let movies = res.data.movieList;
-        for(let i =0; i<movies.length;i++){
-          if(movies[i] && movies[i].sc) movies[i].sc *= 10;
-          obj.movies.push(movies[i]);
+        console.log(res);
+        if(index==0){
+          let movies = res.data.movieList;
+          for(let i =0; i<movies.length;i++){
+            obj.movies.push(movies[i]);
+          }
+        }else if(index==1){
+        let movies = res.data.coming;
+          for(let i =0; i<movies.length;i++){
+            obj.movies.push(movies[i]);
+          }
         }
         // 更新数据源
-        this.setData(this.data)
+        this.setData(this.data);
         console.log(this.data.allMovies);
       },
       fail: () => {},

@@ -11,7 +11,7 @@ Component({
         this.setData({
           movie: newVal
         })
-        console.log(this.data.movieItem);
+        // console.log(this.data.movie);
       }
     }
   },

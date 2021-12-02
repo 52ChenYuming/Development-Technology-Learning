@@ -32,3 +32,6 @@
 .item{
   margin-left: 30rpx;
 }
+.item:last-child{
+  margin-right: 30rpx;
+}

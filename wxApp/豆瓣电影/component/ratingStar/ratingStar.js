@@ -13,7 +13,7 @@ Component({
         // console.log(newVal,oldVal,path);
         let stars = [STAR_OFF,STAR_OFF,STAR_OFF,STAR_OFF,STAR_OFF];
         if(newVal>0){
-          newVal = newVal /20; 
+          newVal = newVal /2; 
           let on = Math.floor(newVal);//全亮的个数
           for(let i =0;i<on;i++){
             stars[i] = STAR_ON;

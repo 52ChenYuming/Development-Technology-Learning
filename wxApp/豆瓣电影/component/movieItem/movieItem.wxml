@@ -3,9 +3,9 @@
   <view class="info">
     <image class="img" src="{{movie.img}}"/>
     <view class="name">{{movie.nm}}</view>
-    <view class="score-wrapper">
+    <view class="score-wrapper" wx:if="{{movie.sc>0}}">
       <ratingStar score="{{movie.sc}}"/>
-      <view class="score">{{movie.sc/10}}</view>
+      <view class="score">{{movie.sc}}</view>
     </view>
   </view>
 </view>
