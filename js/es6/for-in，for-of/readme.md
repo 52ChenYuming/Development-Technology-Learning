@@ -61,6 +61,40 @@ forOf([1, 2, 3], (item) => {
 
      3. arr.push('d');//push方法可以
 
+# for-in详解
+1. 和for-of不同，再原型和用arr.name = 'e'这种方法添加属性，for-in可以遍历到这样添加的属性
+2. for-in遍历的顺序
+
+````javascript
+function Foo() {
+  this[100] = 'test-100'
+  this[1] = 'test-1'
+  this['b'] = 'test-b'
+  this[50] = 'test-50'
+  this[9] = 'test-9'
+  this[8] = 'test-8'
+  this[3] = 'test-3'
+  this[5] = 'test-5'
+  this['A'] = 'test-A'
+  this['C'] = 'test-C'
+  // 遍历顺序如下：
+  // index:1 value:test-1 
+  // index:3 value:test-3     
+  // index:5 value:test-5     
+  // index:8 value:test-8     
+  // index:9 value:test-9     
+  // index:50 value:test-50   
+  // index:100 value:test-100 
+  // index:b value:test-b
+  // index:A value:test-A
+  // index:C value:test-C
+}
+
+let bar = new Foo();
+for (let key in bar) {
+  console.log(`index:${key} value:${bar[key]} `);
+}
+````  
 # for-in
 1. 循环返回的是数据结构的键名
 2. 遍历数组返回的是数组的下标
