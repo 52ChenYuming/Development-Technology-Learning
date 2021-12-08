@@ -82,8 +82,8 @@ function Foo() {
   // index:3 value:test-3     
   // index:5 value:test-5     
   // index:8 value:test-8     
-  // index:9 value:test-9     
-  // index:50 value:test-50   
+  // index:9 value:test-9
+  // index:50 value:test-50
   // index:100 value:test-100 
   // index:b value:test-b
   // index:A value:test-A
