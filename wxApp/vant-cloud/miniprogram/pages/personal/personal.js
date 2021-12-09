@@ -1,4 +1,4 @@
-// pages/personal/personal.js
+// miniprogram/pages/personal/personal.js
 Page({
 
   /**

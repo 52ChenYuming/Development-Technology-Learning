@@ -1,0 +1,15 @@
+<view class="wrapper">
+  <view class="group">
+    <view class="group-bar">
+      <view class="group-title">今日</view>
+    </view>
+    <view class="group-content">
+      <view class="group-content-item">
+        <view class="group-content-item-desc ellipsis-multi-line ellipsis-line-3">
+          新华国际时评：中国入世20年的世界启示
+        </view>
+        <image mode= "aspectFill" class="group-content-item-img" src="http://www.news.cn/world/2021-12/09/1128146575_16390330144061n.jpg"></image>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,18 +1,28 @@
-// pages/group/group.js
+// miniprogram/pages/group/group.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    groupList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let self = this
+    wx.cloud.callFunction({
+      name: 'getGroup',
+      data: {},
+      success(res) {
+        console.log(res.result);
+        self.setData({
+          groupList: res.result
+        })
+      }
+    })
   },
 
   /**

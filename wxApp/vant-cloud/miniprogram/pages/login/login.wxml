@@ -1,4 +1,4 @@
-<!--pages/login/login.wxml-->
+<!--miniprogram/pages/login/login.wxml-->
 <view class="login">
   <view class="public-list">
     <view class="public-header mp-info">

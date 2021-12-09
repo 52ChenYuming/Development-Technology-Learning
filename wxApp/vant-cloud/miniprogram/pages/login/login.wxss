@@ -1,4 +1,4 @@
-/* pages/login/login.wxss */
+/* miniprogram/pages/login/login.wxss */
 .login{
   padding: 20rpx;
 }
@@ -21,16 +21,14 @@
 .login-tips{
   text-align: center;
 }
-
 .login-tips .header{
   font-size: 30rpx;
   margin: 50rpx 0 20rpx;
 }
 .tips-item{
   font-size: 27rpx;
-  color: gray;
+  color: grey;
 }
 .login-btn{
   margin: 70rpx 0;
-  background-color: rgb(74, 209, 74);
 }
