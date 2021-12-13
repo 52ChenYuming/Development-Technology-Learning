@@ -10,11 +10,9 @@
 </head>
 
 <body>
-  <div id="app">
-
-  </div>
+  <div id="app"></div>
   <!-- AJAX对后端数据请求方法 -->
-  <!-- <script>
+  <script>
     // let app = document.getElementById('app');
     // let app = $('#app');
 
@@ -44,7 +42,7 @@
       app.appendChild(ol);
     }
     console.log(app);
-  </script> -->
+  </script>
 
   <!-- 原生JS get对后端数据方法 -->
   <!-- <script>
@@ -83,7 +81,6 @@
         }
       }
     }
-
     request('get', 'https://autumnfish.cn/search', 'keywords="Stay"', success);
     function success(res) {
       console.log(res);
@@ -91,7 +88,7 @@
   </script> -->
 
   <!-- 原生JS post方法对后端数据方法 -->
-  <script>
+  <!-- <script>
     // 创建请求实例对象
     var myAjax = new XMLHttpRequest();
     // 设置请求的url参数，这是做准备工作
@@ -105,7 +102,7 @@
         console.log(JSON.parse(myAjax.responseText));
       }
     }
-  </script>
+  </script> -->
 
 </body>
 
