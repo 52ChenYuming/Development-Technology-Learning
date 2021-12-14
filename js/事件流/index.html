@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app" style="width: 100%; background-color: #000;">
+    <div id="title" style="width: 100px;background-color:#fff;">购票</div>
+  </div>
+
+  <script>
+    let app = document.getElementById('app')
+    let title = document.getElementById('title')
+
+    window.addEventListener('click', () => {
+      console.log('window');
+    }, false)
+
+    app.addEventListener('click', () => {
+      console.log('app');
+    }, false);
+
+    title.addEventListener('click', (e) => {
+      console.log('title');
+      // 阻止冒泡
+      e.stopImmediatePropagation()
+    }, false)
+  </script>
+</body>
+
+</html>
