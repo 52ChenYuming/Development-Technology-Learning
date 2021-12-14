@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .image-item {
+      height: 300px;
+      display: block;
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp05%2F19100120461512E-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=a54376e9083c028527cd99938f7ece10"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp05%2F1Z92R1392462X-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=5735b02fa44e2a1cc505952c5a5b67d9"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic9.nipic.com%2F20100914%2F2531170_171928949919_2.jpg&refer=http%3A%2F%2Fpic9.nipic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=b38d93d58dec9b9250c86dc0e6a9f9a7"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp01%2F1ZZQ20QJS6-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=1ac08af6aa695e43ed07adedad52d4a6"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F021620115230%2F200216115230-9-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=31f24cf67e4ff8cdfe1b98f9a82f4c61"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic14.nipic.com%2F20110505%2F545848_145235267178_2.jpg&refer=http%3A%2F%2Fpic14.nipic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=ea409b117afe93d4759a6a71deddf465"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffile02.16sucai.com%2Fd%2Ffile%2F2014%2F0814%2F17c8e8c3c106b879aa9f4e9189601c3b.jpg&refer=http%3A%2F%2Ffile02.16sucai.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=4e95062ed975663932aa289fa9c8fa65"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp03%2F1Z921104109E54-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=aea2d712278fcc148a482d0a38a58f2b"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.2008php.com%2F09_Website_appreciate%2F10-07-11%2F1278861720_g.jpg&refer=http%3A%2F%2Fwww.2008php.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=2aef91a706e44ab9c8447fa4297a3786"
+    alt="">
+  <img class="image-item" src="" lazyload="true"
+    data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic114.nipic.com%2Ffile%2F20161114%2F22852412_090003190000_2.jpg&refer=http%3A%2F%2Fpic114.nipic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642059482&t=971447b6a293b80d06f9692964887235"
+    alt="">
+
+  <script>
+    let viewHeight = document.documentElement.clientHeight
+    // console.log(viewHeight);
+    function lazyLoad() {
+      let eles = document.querySelectorAll('img[data-original][lazyload]')
+      // console.log(eles);
+      eles.forEach(item => {
+        // console.log(item);
+        let rect;
+        rect = item.getBoundingClientRect()
+        // console.log(rect);
+        if (rect.bottom >= 0 && rect.top < viewHeight) {//在可视区域内
+          let img = new Image()
+          img.src = item.dataset.original;
+          img.onload = function () {
+            item.src = img.src
+          }
+
+          item.src = item.dataset.original
+          item.removeAttribute('data-original');
+          item.removeAttribute('lazyload')
+        }
+      })
+    }
+    lazyLoad()
+    document.addEventListener('scroll', lazyLoad)
+
+  </script>
+</body>
+
+</html>
