@@ -11,8 +11,5 @@
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
 # 步骤一：配置tabBar
-# 步骤二：bookcity html css
-# 步骤三：配置调用云函数
-          npm i superagent
-          解决乱码
+# 步骤二：bookcity html css 配置调用云函数
 

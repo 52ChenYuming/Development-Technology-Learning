@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    hotData:[],
+    classifyData:[]
   },
 
   /**
@@ -15,11 +16,26 @@ Page({
     this.getList()
   },
   getList(){
+    wx.showLoading({
+      title: '正在加载',
+    })
     wx.cloud.callFunction({
       name:'getList',
       data:{}
     }).then(res=>{
+      wx.hideLoading()
       console.log(res);
+      this.setData({
+        hotData:res.result.hotData,
+        classifyData:res.result.classifyData
+      })
+    })
+  },
+  
+  toReading(e){
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: `/pages/bookSection/bookSection?url=${url}`,
     })
   },
   /**

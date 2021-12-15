@@ -62,3 +62,35 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.classify{
+  padding: 12rpx;
+  font-size: 32rpx;
+  color: #888;
+}
+.classifyname{
+  font-weight: bold;
+  line-height: 80rpx;
+  font-style: 32rpx;
+  background: #f6f6f6;
+  border-top: 1px solid #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
+  color: #222;
+  padding-left: 20rpx;
+}
+
+.classifyitem{
+  background: #fff;
+  font-size: 28rpx;
+  border-bottom: 1px solid #ddd;
+  height: 72rpx;
+  display: flex;
+  justify-content: space-between;
+  /* line-height: 72rpx; */
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.sname{
+  color: #6f78a7;
+}

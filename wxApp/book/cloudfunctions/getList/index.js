@@ -26,5 +26,23 @@ exports.main = async (event, context) => {
     hotData.push(obj);
   }
 
-  return {hotData};
+  // 列表推荐
+  let classifyList = $('.block');
+  let classifyData = [];
+  for(let i=0;i<classifyList.length; i++){
+    let obj = {};
+    obj['type'] = $(classifyList[i]).find('h2').text();
+    let childDom = $(classifyList[i]).find('.lis').find('li');
+    let childData = [];
+    for(let j=0;j<childDom.length;j++){
+      let childObj = {};
+      childObj['name'] = $(childDom[j]).find('.s2').find('a').text();
+      childObj['author'] = $(childDom[j]).find('.s3').text();
+      childObj['url'] = $(childDom[j]).find('s2').find('a').attr('href')
+      childData.push(childObj);
+    }
+    obj['data'] = childData;
+    classifyData.push(obj)
+  }
+  return {hotData,classifyData};
 }

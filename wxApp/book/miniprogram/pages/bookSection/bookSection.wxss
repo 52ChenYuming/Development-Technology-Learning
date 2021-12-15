@@ -1,0 +1,46 @@
+page{
+  background-color: #fff;
+}
+.introduce{
+  display: flex;
+  padding: 12rpx;
+}
+.detailleft image{
+  width: 200rpx;
+  height: 260rpx;
+}
+.detailright{
+  flex: 1;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  color: #888;
+}
+.detailright .name{
+  color: #222222;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 60rpx;
+}
+.detailright view{
+  margin:12rpx 0;
+}
+.joinBook{
+  padding: 0 12rpx;
+}
+.brief{
+  margin: 30rpx 0;
+}
+.introduceTitle{
+  padding: 0 12rpx;
+  line-height: 70rpx;
+  height: 70rpx;
+  background: #6a88c2;
+  color: #fff;
+  font-size: 32rpx;
+}
+.introduceContent{
+  padding: 12rpx;
+  color: #888;
+  font-size: 28rpx;
+}
+

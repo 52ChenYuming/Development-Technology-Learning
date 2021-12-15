@@ -1,0 +1,28 @@
+<view class="introduce">
+  <view class="detailleft">
+    <image src="https://img.bige7.com/bookimg/2530.jpg"/>
+  </view>
+  <view class="detailright">
+    <view>
+      <view class="name">万相之王</view>
+      <view>
+        <text>作者：天蚕土豆</text>
+      </view>
+      <view>
+        <text>状态：连载</text>
+      </view>
+      <view>
+        <text>更新：2021-12-15 12:39:56</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="joinBook">
+  <van-button type="warning" size="small">加入书架</van-button>
+</view>
+
+<!-- 内容简介 -->
+<view class="brief">
+  <view class="introduceTitle">内容简介</view>
+  <view class="introduceContent">天地间有万相，我李洛，终将成为那万相之王。 </view>
+</view>
