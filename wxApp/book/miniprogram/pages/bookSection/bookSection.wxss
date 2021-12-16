@@ -30,11 +30,11 @@ page{
 .brief{
   margin: 30rpx 0;
 }
-.introduceTitle{
+.introduceTitle ,.lastsection .last{
   padding: 0 12rpx;
   line-height: 70rpx;
   height: 70rpx;
-  background: #6a88c2;
+  background: #be3948;
   color: #fff;
   font-size: 32rpx;
 }
@@ -43,4 +43,42 @@ page{
   color: #888;
   font-size: 28rpx;
 }
+
+.lastsection{
+  margin-bottom: 30rpx;
+  color: #222;
+  font-size: 28rpx;
+}
+.lastsection .section{
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listPage{
+  display: flex;
+  text-align: center;
+  margin: 20rpx;
+  align-items: center;
+}
+.listPage .pre{
+  flex:1
+}
+.listPage .section{
+  flex:2;
+  height:68rpx;
+  line-height: 68rpx;
+
+}
+.listPage .next{
+  flex:1
+}
+.picker{
+  height: 100%;
+  font-size: 28rpx;
+  color: #888;
+}
+
 

@@ -21,7 +21,18 @@ exports.main = async (event, context) => {
   bookDetailData['updateTime'] = $('.book_info').find('.book_box').find('.dd_box').eq(2).find('span').text();
   bookDetailData['brief'] = $('.book_about').find('dd').text();
   
+
+    // 章节列表
+  let lastData = [];
+  let lastsection = $('.book_last').find('dd');
+  for(let i=0;i<lastsection.length;i++){
+    let obj = {};
+    obj['name'] = $(lastsection[i]).find('a').text();
+    obj['url'] = $(lastsection[i]).find('a').attr('href');
+    lastData.push(obj);
+  }
   return {
-    bookDetailData
+    bookDetailData,
+    lastData
   }
 }

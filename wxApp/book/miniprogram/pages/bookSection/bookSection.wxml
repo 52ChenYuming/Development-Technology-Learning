@@ -1,28 +1,56 @@
 <view class="introduce">
   <view class="detailleft">
-    <image src="https://img.bige7.com/bookimg/2530.jpg"/>
+    <image src="{{bookDetailData.imgurl}}" />
   </view>
   <view class="detailright">
     <view>
-      <view class="name">万相之王</view>
+      <view class="name">{{bookDetailData.name}}</view>
       <view>
-        <text>作者：天蚕土豆</text>
+        <text>{{bookDetailData.author}}</text>
       </view>
       <view>
-        <text>状态：连载</text>
+        <text>{{bookDetailData.status}}</text>
       </view>
       <view>
-        <text>更新：2021-12-15 12:39:56</text>
+        <text>{{bookDetailData.updateTime}}</text>
       </view>
     </view>
   </view>
 </view>
 <view class="joinBook">
-  <van-button type="warning" size="small">加入书架</van-button>
+  <van-button type="warning"  bindtap="joinBook" data-url="" size="small">加入书架</van-button>
 </view>
 
 <!-- 内容简介 -->
-<view class="brief">
+<view class="brief" >
   <view class="introduceTitle">内容简介</view>
-  <view class="introduceContent">天地间有万相，我李洛，终将成为那万相之王。 </view>
+  <view class="introduceContent">{{bookDetailData.brief}}</view>
+</view>
+
+<!-- 最新章节 -->
+<view class="lastsection">
+  <view class="last">最新章节</view>
+  <view 
+  class="section" 
+  wx:for="{{lastData}}" 
+  wx:key="index" 
+  bindtap="toText"
+  data-url="{{item.url}}">{{item.name}}</view>
+</view>
+
+<!-- 分页 -->
+<view class="listPage">
+  <view class="pre">
+    <button type="warn" size="mini">上一页</button>
+  </view>
+
+  <view class="section">
+    <picker mode="selector" range="{{pageArray}}">
+    <view class="picker">第{{pageArray[0]}}页</view>
+    </picker>
+  </view>
+
+  <view class="next">
+    <button type="warn" size="mini">下一页</button>
+  </view>
 </view>

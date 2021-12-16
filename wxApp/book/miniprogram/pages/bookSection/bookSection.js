@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    bookDetailData:[],
+    lastData:[],
+    pageData:[],
+    pageArray:[1,2,3,4,5]
   },
 
   /**
@@ -15,16 +18,37 @@ Page({
     console.log(options.url);
     const { url } = options;
     this.getSection(url);
+    this.getAllSection(url);
   },
-
+  getAllSection(url){
+    wx.cloud.callFunction({
+      name:'allSection',
+      data:{
+        url:url || '/book/2749/'
+      },
+    }).then(res=>{
+      console.log(res);
+    })
+  },
   getSection(url){
     wx.cloud.callFunction({
       name:'bookSection',
       data:{
-        url:url
+        url:url || '/book/2749'
       }
     }).then(res=>{
-      console.log(res);
+      // console.log(res);
+      this.setData({
+        bookDetailData:res.result.bookDetailData,
+        lastData:res.result.lastData
+      })
+    })
+  },
+  toText(e){
+    console.log(e);
+    let url = e.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: `/pages/bookContent/bookContent?url=${url}`,
     })
   },
 
