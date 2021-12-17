@@ -13,15 +13,22 @@ exports.main = async (event, context) => {
   const result = await superagent.get(serverUrl) // 拿到页面的html
   const $ = cheerio.load(result.text)
 
+  let currentPage = event.currentPage // 第几页
+
   // 分页章节
-  let pageData = []
+  let pageData = {}
+  let pageSecction = []
   let pageList = $('.book_last').find('dd')
-  for (let i = 1; i < 20; i++) {
+  pageData['totalPage'] = pageList.length / 20 // 当前这本小数能形成多少页
+
+  let len = (currentPage - 1) * 20
+  for (let i = len + 1; i < 21 + len; i++) {
     let obj = {}
     obj['sectionName'] = $(pageList[i]).find('a').text()
     obj['url'] = $(pageList[i]).find('a').attr('href')
-    pageData.push(obj)
+    pageSecction.push(obj)
   }
+  pageData['currentPageData'] = pageSecction
 
   return {
     pageData

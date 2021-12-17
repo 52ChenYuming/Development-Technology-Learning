@@ -1,0 +1,11 @@
+<view>
+  <view class="title">
+    <view class="introduce">专属场景歌单</view>
+    <view class="more">更多</view>
+  </view>
+  <scroll-view scroll-x="true">
+    <view class="musciList" >
+      <musicListItem wx:for="{{musicListItem}}" wx:key="index" musicInfo ="{{item}}"/>
+    </view>
+  </scroll-view>
+</view>

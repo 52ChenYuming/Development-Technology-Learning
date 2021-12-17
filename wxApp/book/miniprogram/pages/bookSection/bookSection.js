@@ -8,7 +8,8 @@ Page({
     bookDetailData:[],
     lastData:[],
     pageData:[],
-    pageArray:[1,2,3,4,5]
+    pageArray:[1,2,3,4,5],
+    currentPage:1
   },
 
   /**
@@ -28,13 +29,17 @@ Page({
       },
     }).then(res=>{
       console.log(res);
+      this.setData({
+        currentPage:res.result.pageData
+      })
     })
   },
   getSection(url){
     wx.cloud.callFunction({
       name:'bookSection',
       data:{
-        url:url || '/book/2749'
+        url:url || '/book/2749',
+        currentPage:this.data.currentPage || 1
       }
     }).then(res=>{
       // console.log(res);

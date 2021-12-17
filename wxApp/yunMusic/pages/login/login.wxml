@@ -1,0 +1,15 @@
+<!--pages/login/login.wxml-->
+
+
+<view id="all">
+  <view class="icon">
+    <i class="iconfont icon-wangyiyunyinle1"></i>
+  </view>
+  <view class="inp">
+    <input type="text" bindinput="" class="username" placeholder="手机号"/>
+    <input type="password" class="passward" placeholder="密码"/>
+  </view>
+  <view class="loginBtn">
+    <button bindtap="send">登录</button>
+  </view>
+</view>

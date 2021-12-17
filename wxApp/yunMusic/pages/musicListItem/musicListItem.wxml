@@ -1,0 +1,4 @@
+<view class="musicListItem">
+  <image src="{{musicInfo.imgUrl.imageUrl}}"/>
+  <text class="info">{{musicInfo.mainTitle.title}}</text>
+</view>

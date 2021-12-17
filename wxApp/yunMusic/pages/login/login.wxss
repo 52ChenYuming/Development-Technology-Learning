@@ -1,0 +1,51 @@
+
+page{
+  background: #ff2c23;
+}
+#all{
+  display: flex;
+  flex-direction: column;
+}
+.icon{
+
+  line-height: 350rpx;
+  height: 350rpx;
+  width: 100%;
+  text-align: center;
+}
+.icon i{
+  color: #fff;
+  font-size: 100rpx;
+}
+.inp{
+
+  height: 300rpx;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+.inp .username,
+.passward{
+  margin-top: 66rpx;
+  width: 500rpx;
+  height: 50rpx;
+  border-bottom: 1px solid#f7f7f7;
+  color: #f7f7f7;
+}
+.loginBtn{
+
+  height: 50rpx;
+  width: 100%;
+  flex: 1;
+}
+.loginBtn button{
+  width: 500rpx !important;
+  border-radius: 20px;
+  color: #ff2c23;
+}
+.musciList{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
