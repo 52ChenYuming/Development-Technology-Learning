@@ -7,9 +7,11 @@ const mongoose = require('mongoose');
 const CONFIG = require('./config/config');
 const session = require('koa-session');
 const bodyParser = require('koa-bodyparser');//解析处理post传过来的参数
+const flash = require('./middleWares/flash')
 mongoose.connect(CONFIG.mongodb);//连接上MongoDB数据库
 
 const app = new Koa();
+app.use(flash());
 //使用模板引擎
 app.use(views(path.join(__dirname, 'views'), {
   map: { html: 'nunjucks' }
