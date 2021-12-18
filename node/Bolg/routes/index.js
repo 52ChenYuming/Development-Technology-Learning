@@ -13,8 +13,9 @@ module.exports = (app) => {
   router.get('/posts/new', require('./posts').create);
 
   // 文章
-  router.get('/', require('./posts').index)
-  router.get('/posts', require('./posts').index)
+  router.get('/', require('./posts').index);
+  router.get('/posts', require('./posts').index);
+  router.post('/posts/new', require('./posts').create);
   app
     .use(router.routes())
     .use(router.allowedMethods())

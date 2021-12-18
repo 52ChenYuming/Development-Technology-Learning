@@ -1,4 +1,5 @@
-const { create } = require("../models/post");
+const CategoryModel = require('../models/category')
+const PostModel = require('../models/post')
 
 module.exports = {
   // 从数据库获取文章数据
@@ -13,18 +14,31 @@ module.exports = {
   },
   async create(ctx, next) {
     if (ctx.method === 'GET') {
+      const categories = await CategoryModel.find({})
       await ctx.render('create', {
         title: '新建文章',
-        categories: [
-          { id: 1, title: '随笔' },
-          { id: 2, title: '生活' },
-          { id: 3, title: '前端' },
-          { id: 4, title: '后端' },
-        ]
+        categories
       })
       return
     } else { //发布文章
-
+      const { title, content } = ctx.request.body
+      let errMsg = ''
+      if (!title) {
+        errMsg = '标题不能为空'
+      } else if (!content) {
+        errMsg = '内容不能为空'
+      }
+      if (errMsg) {
+        ctx.flash = { warning: errMsg }
+        ctx.redirect('back')
+        return
+      } else {// 写入数据库
+        const post = Object.assign(ctx.request.body, {
+          author: ctx.session.user._id
+        })
+        const res = await PostModel.create(post)
+        console.log(res);
+      }
     }
   }
 }
