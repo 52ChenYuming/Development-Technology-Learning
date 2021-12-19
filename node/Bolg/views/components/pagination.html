@@ -2,15 +2,15 @@
   <nav class="pagination is-small margin-top" role="navigation" aria-label="pagination">
     {# 上一页 #}
     {% if currentPage == 1 %}
-    <a class="pagination-previous">Previous</a>
+    <a class="pagination-previous">上一页</a>
     {% else %}
-    <a href="{{baseUrl + (currentPage - 1)}}" class="pagination-previous">Previous</a>
+    <a href="{{baseUrl + (currentPage - 1)}}" class="pagination-previous">上一页</a>
     {% endif %}
     {# 下一页 #}
     {% if currentPage == pageCount %}
-    <a class="pagination-previous">Next page</a>
+    <a class="pagination-previous">下一页</a>
     {% else %}
-    <a href="{{baseUrl + (currentPage + 1)}}" class="pagination-next">Next page</a>
+    <a href="{{baseUrl + (currentPage + 1)}}" class="pagination-next">下一页</a>
     {% endif %}
 
     <ul class="pagination-list">
