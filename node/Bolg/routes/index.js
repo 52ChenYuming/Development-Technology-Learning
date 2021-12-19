@@ -44,7 +44,7 @@ module.exports = (app) => {
   // 分类
   router.get('/category', isAdmin, require('./category').list)
   router.get('/category/new', isAdmin, require('./category').newCategory)
-  router.get('/category/new', isAdmin, require('./category').newCategory)
+  router.post('/category/new', isAdmin, require('./category').newCategory)
   router.get('/category/:id/delete', isAdmin, require('./category').delete)
 
   app
