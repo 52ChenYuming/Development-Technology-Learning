@@ -18,7 +18,8 @@ module.exports = (app) => {
   router.get('/posts/:id', require('./posts').show);
 
   // 评论
-  router.post('/comments/new', require('./comments').create)
+  router.post('/comments/new', require('./comments').create);
+  router.get('/comments/:id/delete', require('./comments').delete);
 
   app
     .use(router.routes())
