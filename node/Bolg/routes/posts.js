@@ -2,6 +2,7 @@ const CategoryModel = require('../models/category')
 const PostModel = require('../models/post')
 const CommentModel = require('../models/comment')
 const marked = require('marked')
+const comment = require('../models/comment')
 module.exports = {
   // 从数据库获取文章数据
   async index(ctx, next) {
@@ -86,6 +87,9 @@ module.exports = {
       // 渲染文章详情模板
 
       let content = marked(post.content)
+      comments.forEach(comment => {
+        comment.content = marked(comment.content)
+      });
       await ctx.render('post', {
         title: post.title,
         post,

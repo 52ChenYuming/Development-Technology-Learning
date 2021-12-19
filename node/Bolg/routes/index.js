@@ -9,7 +9,6 @@ module.exports = (app) => {
   router.post('/signin', require('./user').signin);
   router.post('/', require('./user').signin);
   router.get('/signout', require('./user').signin);
-
   router.get('/posts/new', require('./posts').create);
 
   // 文章
@@ -17,6 +16,10 @@ module.exports = (app) => {
   router.get('/posts', require('./posts').index);
   router.post('/posts/new', require('./posts').create);
   router.get('/posts/:id', require('./posts').show);
+
+  // 评论
+  router.post('/comments/new', require('./comments').create)
+
   app
     .use(router.routes())
     .use(router.allowedMethods())
