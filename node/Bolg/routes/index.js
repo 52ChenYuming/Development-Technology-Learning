@@ -2,7 +2,7 @@ const router = require('koa-router')();
 
 module.exports = (app) => {
   // 从数据库取文章数据
-  router.get('/', require('./home').index);
+  // router.get('/', require('./home').index);
   router.get('/signup', require('./user').signup);
   router.post('/signup', require('./user').signup);
   router.get('/signin', require('./user').signin);
@@ -16,6 +16,7 @@ module.exports = (app) => {
   router.get('/', require('./posts').index);
   router.get('/posts', require('./posts').index);
   router.post('/posts/new', require('./posts').create);
+  router.get('/posts/:id', require('./posts').show);
   app
     .use(router.routes())
     .use(router.allowedMethods())

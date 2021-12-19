@@ -19,6 +19,7 @@
         "koa-session": "^6.2.0",
         "koa-static": "^5.0.0",
         "koa-views": "^7.0.2",
+        "marked": "^3.0.8",
         "mongoose": "^6.0.12",
         "nunjucks": "^3.2.3"
     },
