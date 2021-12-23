@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+      .green {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      颜值：{{count}}
+      <button v-on:click="add">+</button>
+      <button @click="reduce">-</button>
+      <input type="text" @keyup.enter="enter" v-model="inpValue" />
+      <img v-bind:src="imgUrl" alt="" />
+      <div class="name" v-bind:class="isGreen ? 'green' : ''" @click="toGreen">老汪</div>
+      <div :class="[classA,classB]">Jiege</div>
+    </div>
+
+    <script>
+      let app = new Vue({
+        el: '#app',
+        data: {
+          count: 1,
+          inpValue: '',
+          imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE0_4Yff-Zibs8PIORU-0zOgi4hB2xWhnhRw&usqp=CAU',
+          isGreen: false,
+          isok: false,
+          classA: 'name',
+          classB: '222'
+        },
+        methods: {
+          add() {
+            this.count++
+            this.inpValue++
+          },
+          reduce() {
+            this.count--
+          },
+          enter() {
+            console.log(this.inpValue)
+          },
+          toGreen() {
+            this.isGreen = !this.isGreen
+            console.log(this.isGreen)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+      /* 指定某些dom结构是在页面全部显示完后渲染 */
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- <div v-pre>{{msg}}</div> -->
+      <div v-cloak>{{msg}}</div>
+    </div>
+    <script>
+      let app = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello world',
+          count: 0
+        },
+        computed: {},
+        methods: {}
+      })
+    </script>
+  </body>
+</html>
