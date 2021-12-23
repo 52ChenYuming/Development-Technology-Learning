@@ -1,0 +1,5 @@
+{
+    "semi": false, //去掉末尾分号
+    "singleQuote": true, //单引号代替双引号
+    "printWidth": 80  //多少字符自动换行
+}
