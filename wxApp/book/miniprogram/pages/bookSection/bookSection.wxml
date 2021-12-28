@@ -51,6 +51,7 @@
   </view>
 
   <view class="next">
-    <button type="warn" size="mini">下一页</button>
+    <button type="warn" size="mini" bindtap=".
+    00">下一页</button>
   </view>
 </view>

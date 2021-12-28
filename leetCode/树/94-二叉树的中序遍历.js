@@ -10,9 +10,9 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var postorderTraversal = function(root) {
+var postorderTraversal = function (root) {
     let res = [];
-    const dfs = function(root) {
+    const dfs = function (root) {
         if (root === null) {
             return;
         }

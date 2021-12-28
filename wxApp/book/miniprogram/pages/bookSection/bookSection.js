@@ -9,7 +9,8 @@ Page({
     lastData:[],
     pageData:[],
     pageArray:[1,2,3,4,5],
-    currentPage:1
+    currentPage:1,
+    url:null
   },
 
   /**
@@ -18,6 +19,9 @@ Page({
   onLoad: function (options) {
     console.log(options.url);
     const { url } = options;
+    this.setData({
+      url:url
+    })
     this.getSection(url);
     this.getAllSection(url);
   },
@@ -25,12 +29,13 @@ Page({
     wx.cloud.callFunction({
       name:'allSection',
       data:{
-        url:url || '/book/2749/'
-      },
+        url:url || '/book/2749/',
+        currentPage:this.data.currentPage || 1
+      }
     }).then(res=>{
       console.log(res);
       this.setData({
-        currentPage:res.result.pageData
+        pageData:res.result.pageData.currentPageData
       })
     })
   },
@@ -49,6 +54,13 @@ Page({
       })
     })
   },
+  nextPage(){
+    this.setData({
+      currentPage:this.data.currentPage + 1
+    })
+    this.getAllSection(this.data.url);
+  },
+  // 去小说正文页
   toText(e){
     console.log(e);
     let url = e.currentTarget.dataset.url;
