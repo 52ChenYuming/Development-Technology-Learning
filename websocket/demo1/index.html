@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* div{
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    } */
+    </style>
+  </head>
+
+  <body>
+    <input type="text" placeholder="请输入" />
+    <button>发送</button>
+    <!-- 显示内容 -->
+    <div></div>
+
+    <script>
+      let input = document.querySelector('input');
+      let button = document.querySelector('button');
+      let div = document.querySelector('div');
+
+      // 创建一个websocket
+      let socket = new WebSocket('ws://192.168.31.45:3000');
+      // 监听socket连接
+      socket.addEventListener('open', () => {
+        div.innerHTML = '连接成功';
+      });
+
+      // 给websocket发送消息
+      button.addEventListener('click', () => {
+        let value = input.value;
+        socket.send(value);
+      });
+
+      // 接受websocket服务响应的消息
+      socket.addEventListener('message', msg => {
+        let dv = document.createElement('div');
+        dv.innerHTML = msg.data;
+        div.appendChild(dv);
+      });
+
+      socket.addEventListener('close', () => {
+        console.log('服务断开');
+      });
+    </script>
+  </body>
+</html>
