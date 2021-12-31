@@ -1,0 +1,26 @@
+<view class="all">
+  <view class="top">
+    <view class="top_left">单车</view>
+    <view class="top_right">电单车</view>
+  </view>
+  <view>
+    <map
+    id="myMap"
+    style="width: 100%; height: 400px;"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}">
+    <i class="iconfont  icon-zihangche "></i>
+    <i class="iconfont  icon-zihangche "></i>
+    <i class="iconfont  icon-zihangche "></i>
+    
+    </map>
+  </view>
+  <view class="bottom">
+    <view class="warn">
+      <text class="text_top">遵守交规，安全骑行</text>
+      <text class="text_bottom">骑车时请遵守交通规则，注意安全骑行</text>
+    </view>
+    <button>扫码租车</button>
+  </view>
+</view>
