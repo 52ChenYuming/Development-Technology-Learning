@@ -26,3 +26,26 @@ objectid-to-timestamp: 根据 ObjectId 生成时间戳
 sha1: sha1 加密，用于密码加密
 winston: 日志
 express-winston: express 的 winston 日志中间件
+
+# 功能设计
+1. 注册
+2. 登录
+3. 登出
+4. 查看文章
+5. 发表文章
+6. 修改文章
+7. 删除文章
+8. 留言
+
+由后端驱动页面
+
+# RESTful 风格 
+
+# 会话
+cookie session
+
+# 页面通知
+connect-flash
+
+# 权限控制
+给路由分配权限（通过中间件实现（函数）

@@ -1,7 +1,7 @@
 module.exports = {
-  prot: 3000,
+  port: 3000,
   session: {
-    scret: 'myblog', //加密拼接字符
+    secret: 'myblog', //加密拼接字符
     key: 'myblog',
     maxAge: 259200000,
   },
