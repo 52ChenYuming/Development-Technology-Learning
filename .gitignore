@@ -1,25 +1,64 @@
-# Compiled class file
-*.class
-
-/node_modules
-
-# Log file
+# 前端项目
+# Numerous always-ignore extensions
+*.bak
+*.patch
+*.diff
+*.err
+ 
+# temp file for git conflict merging
+*.orig
 *.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
+*.rej
+*.swo
+*.swp
 *.zip
-*.tar.gz
-*.rar
+*.vi
+*~
+*.sass-cache
+*.tmp.html
+*.dump
+ 
+# OS or Editor folders
+.DS_Store
+._*
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+nbproject
+thumbs.db
+*.iml
+ 
+# Folders to ignore
+.hg
+.svn
+.CVS
+.idea
+node_modules/
+jscoverage_lib/
+bower_components/
+dist/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# java项目
+.idea/workspace.xml
+.idea/dictionaries/myj.xml
+.idea/
+.DS_Store
+*.classpath
+*.project
+.settings
+.project
+.target
+.classpath
+**/.settings
+**/.classpath
+**/.eclipse
+**/target/
+target/
+bin/
+.svn
+*.iml
+ 
