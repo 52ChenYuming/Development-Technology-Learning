@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/login/login"
+    "pages/login/login",
+    "pages/noteClass/noteClass"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "为你写诗",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

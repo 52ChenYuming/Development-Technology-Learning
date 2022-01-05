@@ -1,2 +1,25 @@
-<!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<view class="star-login">
+  <view class="title">登录</view>
+
+  <view class="login-wrapper">
+    <view class="avatar">
+      <image mode="widthFix" src="../../images/raw_1512446140.jpeg"></image>
+    </view>
+
+    <view class="input-group">
+      <label for="username">账号</label>
+      <input type="text" bindinput="usernameVal"/>  
+    </view>
+
+    <view class="input-group">
+      <label for="password">密码</label>
+      <input type="password"bindinput="userpwdVal"/>  
+    </view>
+    
+    <text class="forgot-pwd">忘记密码</text>
+
+    <view class="sign" bindtap="login">登录</view>
+  </view>
+
+  <text class="register">新用户点击这里注册哦~</text>
+</view>
