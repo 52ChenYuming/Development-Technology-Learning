@@ -1,13 +1,19 @@
-import {$toast} from '../../utils/util'
 import request from '../../utils/request'
+import {$toast} from '../../utils/util'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    nickname:'',
     username:'',
-    userpwd:''
+    userpwd:'',
+  },
+  nicknameVal(e){
+    this.setData({
+      nickname:e.detail.value
+    })
   },
   usernameVal(e){
     this.setData({
@@ -20,35 +26,26 @@ Page({
       userpwd:e.detail.value
     })
   },
-  login(){
-    // 拿到密码传给后端
-    if(this.data.username.trim()===''){
-      $toast('账号不能为空','error');
-      return 
-    }
-    if(this.data.userpwd.trim()===''){
-      $toast('密码不能为空','error');
-      return 
-    }
-    request('POST','/users/userLogin',{
+  register(){
+    request('POST','/users/userRegister',{
       username:this.data.username,
-      userpwd:this.data.userpwd
+      userpwd:this.data.userpwd,
+      nickname:this.data.nickname
     }).then((res)=>{
       console.log(res);
       $toast(res.data.mess,'success');
       setTimeout(()=>{
         wx.navigateTo({
-          url: '/pages/noteClass/noteClass',
+          url: '/pages/login/login',
         })
       },1000)
-      wx.setStorageSync('isLogin', true);
     }).catch(err=>{
       console.log(err);
     })
   },
-  toRegister(){
+  toLogin(){
     wx.navigateTo({
-      url: '/pages/register/register',
+      url: '/pages/login/login',
     })
   },
   /**

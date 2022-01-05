@@ -1,9 +1,14 @@
 <view class="star-login">
-  <view class="title">登录</view>
+  <view class="title">注册</view>
 
   <view class="login-wrapper">
     <view class="avatar">
       <image mode="widthFix" src="../../images/raw_1512446140.jpeg"></image>
+    </view>
+
+    <view class="input-group">
+      <label for="username">昵称</label>
+      <input type="text" bindinput="nicknameVal"/>  
     </view>
 
     <view class="input-group">
@@ -16,10 +21,9 @@
       <input type="password"bindinput="userpwdVal"/>  
     </view>
     
-    <text class="forgot-pwd">忘记密码</text>
 
-    <view class="sign" bindtap="login">登录</view>
+    <view class="sign" bindtap="register">注册</view>
   </view>
 
-  <text class="register" bindtap="toRegister">用户点击这里注册哦~</text>
+  <text class="register" bindtap="toLogin">已有账号点击这里登录哦~</text>
 </view>

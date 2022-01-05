@@ -42,4 +42,48 @@ router.post('/userLogin', async (ctx, next) => {
       };
     });
 });
+
+// 注册接口
+router.post('/userRegister', async (ctx, next) => {
+  // 拿到前端输入的参数，先比对数据库中有没有相同的数据,如果没有则植入该数据
+  let _nickname = ctx.request.body.nickname;
+  let _username = ctx.request.body.username;
+  let _userpwd = ctx.request.body.userpwd;
+
+  if (!_nickname || !_username || !_userpwd) {
+    ctx.body = {
+      code: 80001,
+      mess: '用户名密码和昵称不能为空',
+    };
+    return;
+  }
+  await userService.findUser(_username).then(async res => {
+    console.log(res);
+    if (res.length) {
+      ctx.body = {
+        code: 80002,
+        mess: '账号已存在',
+      };
+    } else {
+      // 往数据库添加数据
+      await userService.insertUser([_username, _userpwd, _nickname]).then(res => {
+        console.log(res);
+        if (res.affectedRows !== 0) {
+          ctx.body = {
+            code: 200,
+            data: 'success',
+            mess: '注册成功',
+          };
+        } else {
+          ctx.body = {
+            code: 80001,
+            data: 'error',
+            mess: '注册失败',
+          };
+        }
+      });
+    }
+  });
+});
+
 module.exports = router;

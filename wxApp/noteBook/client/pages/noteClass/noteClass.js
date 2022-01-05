@@ -5,9 +5,49 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isClickMenu:false,
+    avatar:'../../images/raw_1512446140.jpeg',
+    username:'cym',
+    noteClassList: [{
+      img: "../../images/raw_1512446214.jpeg",
+      title: "美食",
+    },
+    {
+      img: "../../images/raw_1512446225.jpeg",
+      title: "旅行",
+    },
+    {
+      img: "../../images/raw_1512446234.jpeg",
+      title: "汽车",
+    },
+    {
+      img: "../../images/raw_1512446243.jpeg",
+      title: "时尚",
+    },
+    {
+      img: "../../images/raw_1512446251.jpeg",
+      title: "科技",
+    },
+  ],
   },
-
+  showMenu(){
+    console.log(111);
+    this.setData({
+      isClickMenu : true,
+    })
+  },
+  hideMenu(){
+    this.setData({
+      isClickMenu : false,
+    })
+  },
+  goNoteList(e){
+    console.log(e);
+    let title = e.currentTarget.dataset.title;
+    wx.navigateTo({
+      url: `/pages/noteList/noteList?title=${title}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

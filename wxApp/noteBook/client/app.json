@@ -1,7 +1,9 @@
 {
   "pages": [
+    "pages/noteClass/noteClass",
     "pages/login/login",
-    "pages/noteClass/noteClass"
+    "pages/register/register",
+    "pages/noteList/noteList"
   ],
   "window": {
     "backgroundTextStyle": "light",

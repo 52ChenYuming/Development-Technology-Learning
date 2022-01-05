@@ -1,2 +1,50 @@
-<!--pages/noteClass/noteClass.wxml-->
-<text>pages/noteClass/noteClass.wxml</text>
+<view class="note-class-wrapper">
+  <view class="note-class {{ isClickMenu ? 'isClickMenu-note':''}}">
+    <view bindtap="showMenu" class="header ">
+      <view>
+        <van-icon name="wap-nav" />
+      </view>
+      <view >
+        <van-icon name="edit" class="edit" />
+        <van-icon name="search" />
+      </view>
+    </view>
+    <scroll-view scroll-y="{{true}}">
+      <view class="note-item" 
+            wx:for="{{noteClassList}}" 
+            wx:key="index"
+            bindtap="goNoteList"
+            data-title="{{item.title}}"
+            >
+        <view class="bg">
+          <image mode="widthFix" src="{{item.img}}"/>
+        </view>
+        <text class="title">{{item.title}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 菜单 -->
+  <view class="person-info {{ isClickMenu ? 'isClickMenu-info':''}}">
+    <view class="person-info-content">
+      <view bindtap="hideMenu" class="info-arrow-left">
+        <van-icon name="arrow-left" />
+      </view>
+      <view class="avatar">
+        <image mode="widthFix" src="{{avatar}}"/>
+      </view>
+      <text class="username">{{username}}</text>
+      <view class="set-item">
+        <van-icon name="friends-o" />
+        <text>个人主页</text>
+      </view>
+      <view class="set-item">
+        <van-icon name="friends-o" />
+        <text>通知</text>
+      </view>
+      <view class="set-item">
+        <van-icon name="friends-o" />
+        <text>退出登录</text>
+      </view>
+    </view>
+  </view>
+</view>
