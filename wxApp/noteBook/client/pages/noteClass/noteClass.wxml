@@ -1,11 +1,11 @@
 <view class="note-class-wrapper">
   <view class="note-class {{ isClickMenu ? 'isClickMenu-note':''}}">
-    <view bindtap="showMenu" class="header ">
+    <view class="header ">
       <view>
-        <van-icon name="wap-nav" />
+        <van-icon bindtap="showMenu" name="wap-nav" />
       </view>
       <view >
-        <van-icon name="edit" class="edit" />
+        <van-icon name="edit" class="edit" bindtap="toEdit"/>
         <van-icon name="search" />
       </view>
     </view>

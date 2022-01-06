@@ -1,6 +1,6 @@
 <view class="note-list">
   <view class="lists">
-    <view class="list" wx:for="{{noteList}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="goNoteDetail">
+    <view class="list" wx:for="{{noteList}}" wx:key="id" data-id="{{item.id}}" bindtap="goNoteDetail">
       <view class="img">
         <image src="{{item.head_img}}" />
       </view>

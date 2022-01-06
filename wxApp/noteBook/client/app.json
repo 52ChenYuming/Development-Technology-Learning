@@ -1,9 +1,12 @@
 {
   "pages": [
+    "pages/noteEdit/noteEdit",
     "pages/noteClass/noteClass",
     "pages/login/login",
     "pages/register/register",
-    "pages/noteList/noteList"
+    "pages/noteList/noteList",
+    "pages/noteDetail/noteDetail"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,30 +1,18 @@
-import request from '../../utils/request'
+// pages/noteEdit/noteEdit.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    noteList:''
+    fileList: [],
   },
-  goNoteDetail(e){
-    let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: `/pages/noteDetail/noteDetail?id=${id}`,
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    request('post','/note/findNoteListByType',{
-      note_type:options.title
-    }).then(res=>{
-      console.log(res);
-      this.setData({
-        noteList:res.data.data
-      })
-    })
+
   },
 
   /**

@@ -1,0 +1,58 @@
+.note-detail{
+  width: 100%;
+}
+.note-img {
+  width: 100%;
+  height: 386rpx;
+}
+.note-img image{
+  width: 100%;
+  height: 100%;
+}
+.note-content {
+  margin-top: 50rpx;
+  padding: 0 50rpx;
+}
+
+.tab {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comm {
+  color: rgba(16, 16, 16, 0.7);
+  font-size: 36rpx;
+  text-align: center;
+  font-family: Arial;
+  position: relative;
+  padding-bottom: 4px;
+  border-bottom: 3px solid #e51c23;
+}
+.nickname::before {
+  content: "By";
+  position: absolute;
+  left: -25px;
+  opacity: 0.5;
+  color: rgba(16, 16, 16, 1);
+  font-size: 32rpx;
+  font-family: Arial;
+}
+
+.title {
+  margin: 40rpx 0;
+  line-height: 1.3;
+  color: rgba(16, 16, 16, 1);
+  font-size: 60rpx;
+  text-align: left;
+  font-family: Arial;
+}
+
+.content {
+  padding-bottom: 20px;
+  line-height: 1.5;
+  opacity: 0.6;
+  color: rgba(16, 16, 16, 1);
+  font-size: 28rpx;
+  text-align: left;
+  font-family: Arial;
+}
