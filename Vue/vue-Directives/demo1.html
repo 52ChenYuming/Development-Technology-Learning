@@ -26,21 +26,21 @@
           msg: '陈煜明',
           msgHtml: '<h1>老陈</h1>',
           isLogin: true,
-          items: [1, 88, 3, 4, 10, 6, 0, 8, 2]
+          items: [1, 88, 3, 4, 10, 6, 0, 8, 2],
         },
         computed: {
           //计算属性通常将在数据源中的数据做一定的修饰后再渲染
           sortItems: function () {
-            console.log(this)
-            return this.items.sort(this.sortNumber)
-          }
+            console.log(this);
+            return this.items.sort(this.sortNumber);
+          },
         },
         methods: {
           sortNumber(a, b) {
-            return a - b
-          }
-        }
-      })
+            return a - b;
+          },
+        },
+      });
     </script>
   </body>
 </html>

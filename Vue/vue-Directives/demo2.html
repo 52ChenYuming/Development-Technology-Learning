@@ -29,29 +29,30 @@
         data: {
           count: 1,
           inpValue: '',
-          imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE0_4Yff-Zibs8PIORU-0zOgi4hB2xWhnhRw&usqp=CAU',
+          imgUrl:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE0_4Yff-Zibs8PIORU-0zOgi4hB2xWhnhRw&usqp=CAU',
           isGreen: false,
           isok: false,
           classA: 'name',
-          classB: '222'
+          classB: '222',
         },
         methods: {
           add() {
-            this.count++
-            this.inpValue++
+            this.count++;
+            this.inpValue++;
           },
           reduce() {
-            this.count--
+            this.count--;
           },
           enter() {
-            console.log(this.inpValue)
+            console.log(this.inpValue);
           },
           toGreen() {
-            this.isGreen = !this.isGreen
-            console.log(this.isGreen)
-          }
-        }
-      })
+            this.isGreen = !this.isGreen;
+            console.log(this.isGreen);
+          },
+        },
+      });
     </script>
   </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <span v-red="color">{{count}}</span>
+      <button v-red="color" @click="add">+</button>
+      <author></author>
+    </div>
+    <script>
+      // 自定义指令
+      Vue.directive('red', function (el, binding, vnode) {
+        el.style = `color:${binding.value}`;
+      });
+
+      // 构造器的延伸(自定义标签)
+      var author = Vue.extend({
+        template: "<p><a href='#'>wn</a></p>",
+      });
+      new author().$mount('author');
+
+      //set
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          count: 0,
+          color: 'red',
+          obj: {},
+        },
+        methods: {
+          add() {
+            this.count++;
+          },
+        },
+        created() {
+          // set
+          this.$set(this.obj, 'num', 1);
+        },
+      });
+    </script>
+  </body>
+</html>

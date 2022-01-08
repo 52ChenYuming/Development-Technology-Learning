@@ -19,17 +19,19 @@
     <div id="app">
       <!-- <div v-pre>{{msg}}</div> -->
       <div v-cloak>{{msg}}</div>
+      <p v-show="seen">现在你看到我了</p>
     </div>
     <script>
       let app = new Vue({
         el: '#app',
         data: {
           msg: 'hello world',
-          count: 0
+          count: 0,
+          seen: false,
         },
         computed: {},
-        methods: {}
-      })
+        methods: {},
+      });
     </script>
   </body>
 </html>
