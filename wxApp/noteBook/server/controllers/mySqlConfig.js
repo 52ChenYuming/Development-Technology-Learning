@@ -63,10 +63,16 @@ let findNoteDetailById = function (id) {
   return allServices.query(_sql);
 };
 
+let publish = function (value) {
+  let _sql = `insert into note set useId=?,title=?,note_type=?,note_content=?,head_img=?,nickname=?,c_time=?,m_time=?;`;
+  return allServices.query(_sql, value);
+};
+
 module.exports = {
   userLogin,
   findUser,
   insertUser,
   findNoteListByType,
   findNoteDetailById,
+  publish,
 };

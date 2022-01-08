@@ -41,7 +41,7 @@ Page({
           url: '/pages/noteClass/noteClass',
         })
       },1000)
-      wx.setStorageSync('isLogin', true);
+      wx.setStorageSync('userInfo', res.data.data);
     }).catch(err=>{
       console.log(err);
     })

@@ -3,10 +3,10 @@ App({
   onLaunch() {
     // 获取本地存储
     wx.getStorage({
-      key: 'isLogin',
+      key: 'userInfo',
       success(res) {
         console.log(res);
-        if(!res.data){
+        if(res.data===''){
           wx.navigateTo({
             url: '/pages/login/login',
           })
@@ -14,7 +14,7 @@ App({
       },
       fail() {
         console.log('获取本地存储失败');
-        wx.setStorageSync('isLogin', false)
+        wx.setStorageSync('userInfo', '')
       }
     })
     // 登录
