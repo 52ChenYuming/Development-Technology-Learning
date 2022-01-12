@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <!-- header -->
-    <v-header />
+    <v-header :seller="seller" />
     <!-- Tab -->
     <div class="page">
       <router-view></router-view>
@@ -11,13 +11,23 @@
 
 <script>
 import Header from '@/components/header/Header.vue'
+import { getSeller } from '@/api';
+
 export default {
   data () {
-    return {}
+    return {
+      seller:{}
+    }
   },
   components: {
     'v-header': Header
-  }
+  },
+  created() {
+    getSeller().then(seller =>{
+      console.log(seller);
+      this.seller = seller
+    })
+  },
 }
 </script>
 
