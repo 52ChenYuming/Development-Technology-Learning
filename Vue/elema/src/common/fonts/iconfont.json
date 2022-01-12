@@ -1,16 +1,30 @@
 {
-  "id": "",
-  "name": "",
+  "id": "2947855",
+  "name": "轮播图",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "1469179",
+      "icon_id": "924844",
       "name": "close",
       "font_class": "close",
-      "unicode": "e849",
-      "unicode_decimal": 59465
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "5622079",
+      "name": "左右箭头",
+      "font_class": "zuoyoujiantou",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "23020190",
+      "name": "左右箭头",
+      "font_class": "youjiantou",
+      "unicode": "e601",
+      "unicode_decimal": 58881
     }
   ]
 }
