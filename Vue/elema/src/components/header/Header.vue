@@ -61,7 +61,6 @@ export default {
   data () {
     return {
       detailVisible:false,
-      seller:{}
     }
   },
   components: {

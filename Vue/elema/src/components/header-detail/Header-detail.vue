@@ -29,12 +29,13 @@
             <p class="content">{{seller.bulletin}}</p>
           </div>
         </div>
+        <div class="detail-close"
+            @click.stop="hide">
+          <i class="iconfont icon-close"></i>
+        </div>
       </div>
 
-      <div class="detail-close"
-           @click.stop="hide">
-        <i class="iconfont icon-close"></i>
-      </div>
+
     </div>
   </transition>
 </template>
