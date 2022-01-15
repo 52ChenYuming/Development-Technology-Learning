@@ -1,48 +1,57 @@
 <template>
-  <div class="goods">
-    <div class="menu-wrapper" ref="menuWrapper">
-      <ul>
-        <li v-for="(item, index) in goods"
-            :key="index"
-            class="menu-item"
-            @click="selectMenu(index)"
-            :class="{'current' : currentIndex === index}"    
-        >
-          <span class="text">
-            <support-ico v-show="item.type != -1"
-              :size="3"
-              :type="item.type" />
-            {{ item.name }}
-          </span>
-        </li>
-      </ul>
-    </div>
-    <div class="foods-wrapper" ref="foodsWrapper">
-      <ul>
-        <li ref="foodList" class="food-list" v-for="(item, index) in goods" :key="index">
-          <h1 class="title">{{item.name}}</h1>
-          <ul>
-            <li class="food-item" v-for="(food, idx) in item.foods" :key="idx">
-              <div class="icon">
-                <img :src="food.icon" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">{{food.name}}</h2>
-                <p class="desc">{{food.description}}</p>
-                <div class="extra">
-                  <span class="count">月售{{food.sellCount}}份</span>
-                  <span>好评{{food.rating}}%</span>
+  <div>
+    <div class="goods">
+      <div class="menu-wrapper" ref="menuWrapper">
+        <ul>
+          <li v-for="(item, index) in goods"
+              :key="index"
+              class="menu-item"
+              @click="selectMenu(index)"
+              :class="{'current' : currentIndex === index}"    
+          >
+            <span class="text">
+              <support-ico v-show="item.type != -1"
+                :size="3"
+                :type="item.type" />
+              {{ item.name }}
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="foods-wrapper" ref="foodsWrapper">
+        <ul>
+          <li ref="foodList" class="food-list" v-for="(item, index) in goods" :key="index">
+            <h1 class="title">{{item.name}}</h1>
+            <ul>
+              <li class="food-item" v-for="(food, idx) in item.foods" :key="idx">
+                <div class="icon">
+                  <img :src="food.icon" alt="">
                 </div>
-                <div class="price">
-                  <span class="now">￥{{food.price}}</span>
-                  <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
+                <div class="content">
+                  <h2 class="name">{{food.name}}</h2>
+                  <p class="desc">{{food.description}}</p>
+                  <div class="extra">
+                    <span class="count">月售{{food.sellCount}}份</span>
+                    <span>好评{{food.rating}}%</span>
+                  </div>
+                  <div class="price">
+                    <span class="now">￥{{food.price}}</span>
+                    <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
+                  </div>
+                  <!-- 购买按钮 -->
+                  <div class="cartcontral-wrapper">
+                    <cart-control :food="food"/>
+                  </div>  
                 </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
+    <shop-cart :selectFoods = "selectFoods" 
+               :deliveryPrice="seller.deliveryPrice" 
+               :minPrice="seller.minPrice" />
   </div>
 </template>
 
@@ -50,11 +59,21 @@
 import { getGoods } from '@/api';
 import supportIco from '../../components/support-ico/support-ico.vue';
 import BScroll from 'better-scroll'
+import CartControl from '../../components/cart-control/Cart-control.vue';
+import ShopCart from '../../components/shop-cart/Shop-cart.vue';
+
+
 
 export default {
-  components: { supportIco },
+  props:{
+    seller:{
+      type:Object
+    },
+  },
+  components: { supportIco, CartControl, ShopCart },
   data () {
     return {
+      food:{},
       goods: [],
       currentIndex:0
     };
@@ -98,6 +117,22 @@ export default {
       let el = this.$refs.foodList[index];
       this.foodsScroll.scrollToElement(el,300)
       this.currentIndex = index;
+    }
+  },
+  computed:{
+    selectFoods(){
+      // 把所有选够的菜挑出来
+      let foods = [];
+      for(let good of this.goods){
+        if(good.foods){
+          for(let food of good.foods){
+            if(food.count){
+              foods.push(food);
+            }
+          }
+        }
+      }
+      return foods
     }
   }
 };
@@ -182,6 +217,9 @@ export default {
             text-decoration line-through
             font-size 10px
             color rgb(147, 153, 159)
-
+        .cartcontral-wrapper
+          position absolute
+          right 0
+          bottom 12px
 
 </style>

@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "454714",
+      "name": "购物车",
+      "font_class": "03",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "151331",
+      "name": "add",
+      "font_class": "add",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "15066911",
+      "name": "decrease",
+      "font_class": "decrease",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    },
+    {
       "icon_id": "924844",
       "name": "close",
       "font_class": "close",
