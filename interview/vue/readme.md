@@ -8,7 +8,7 @@ Mounted：挂载到DOM树之后调用（虚拟dom结构挂载到真实dom结构�
 beforeUpdate：数据更新之前调用
 updated：数据更新之后调用
 
-<!-- 被keep-alive包裹的组件在切换的时候不会被销毁，二是缓存到内存中，并执行deactivated钩子 -->
+<!-- 被keep-alive包裹的组件在切换的时候不会被销毁，二是缓存到内存中， 并执行deactivated钩子 -->
 activated：命中缓存时执行（在缓存中取到）
 deactivated 做缓存时执行（放入缓存中）
 
