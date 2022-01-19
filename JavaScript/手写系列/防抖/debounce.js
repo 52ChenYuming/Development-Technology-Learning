@@ -16,7 +16,8 @@ function debounce(fn, delay) {
     // 开启这一次的定时器
     timer = setTimeout(() => {
       // 若不改变this指向，则会指向fn定义环境
-      fn.apply(this, arg);
-    }, delay)
-  }
+      // fn.apply(this, arg);
+      fn();
+    }, delay);
+  };
 }
