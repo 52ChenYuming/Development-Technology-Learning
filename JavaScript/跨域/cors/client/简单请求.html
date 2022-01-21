@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <title>简单请求</title>
+  </head>
+  <body>
+    <button id="btn">发请求</button>
+
+    <script>
+      let btn = document.getElementById('btn');
+      btn.addEventListener('click', () => {
+        $.ajax({
+          url: 'http://localhost:3000/home',
+          method: 'get',
+          headers: { 'Content-Type': 'text/plain' },
+          scuccess(res) {
+            console.log(res);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
