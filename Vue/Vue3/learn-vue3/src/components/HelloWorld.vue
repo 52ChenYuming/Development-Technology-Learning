@@ -6,12 +6,12 @@
 
 <script setup>
 
-import { computed, reactive } from 'vue';
+import { computed, onMounted, reactive } from 'vue';
 
 // 将state数据变成响应式数据
 const state = reactive({ 
   count: 1
- })
+})
 
 function add() {
   state.count++
@@ -19,6 +19,10 @@ function add() {
 const double = computed(()=>state.count*2)
 
 const add_10 = computed(()=> state.count+10)
+
+onMounted(() => {
+  console.log('onMounted');
+})
 
 // vue2 里面的data ,methods, computed都是挂载在this上的,这里面有两个明显的缺点
 // 1. 不利于类型推导
