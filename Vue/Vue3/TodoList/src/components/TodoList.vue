@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, toRefs } from 'vue';
+import { computed, reactive, toRefs } from 'vue';
 
 const state = reactive({
   newTodo: '',
@@ -21,6 +21,8 @@ function addTodo() {
     completed: false
   })
 }
+
+const remain = computed(() => state.todos.filter(todo => !todo.completed).length)
 </script>
 
 <template>
@@ -38,15 +40,22 @@ function addTodo() {
 
     <section class="main">
       <ul class="todo-list">
-        <li class="todo" v-for="todo in state.todos" :key="todo.id">
-        <input type="checkbox" name="" id="toggle">
+        <li class="todo" v-for="todo in todos" :key="todo.id">
           <div class="view">
-            <label for>{{ todo.title }}</label>
+            <input type="checkbox" name id="toggle" v-model="todo.completed">
+            <label>{{ todo.title }}</label>
             <button class="destroy"></button>
           </div>
         </li>
       </ul>
     </section>
+
+    <footer class="footer">
+      <span class="todo-count">
+        <strong>2</strong> left
+      </span>
+      <button class="clear-completed" v-show="todos.length>remain">clear-completed</button>
+    </footer>
   </section>
 </template>
 
