@@ -1,0 +1,1 @@
+type FooType = () => void
