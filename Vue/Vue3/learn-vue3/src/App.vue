@@ -1,10 +1,9 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
   <List></List>
 </template>
 
 <script>
-import List from './components/list.vue'
+import List from "./components/List.vue";
 
 export default {
   name: 'App',

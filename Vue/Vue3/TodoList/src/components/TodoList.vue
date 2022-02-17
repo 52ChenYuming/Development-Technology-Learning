@@ -22,7 +22,16 @@ function addTodo() {
   })
 }
 
+function removeCompleted() {
+  state.todos = state.todos.filter(todo => !todo.completed)
+}
+
 const remain = computed(() => state.todos.filter(todo => !todo.completed).length)
+
+function removeTodo(item) {
+  state.todos = state.todos.filter(todo => todo.id !==item.id)
+}
+
 </script>
 
 <template>
@@ -44,7 +53,7 @@ const remain = computed(() => state.todos.filter(todo => !todo.completed).length
           <div class="view">
             <input type="checkbox" name id="toggle" v-model="todo.completed">
             <label>{{ todo.title }}</label>
-            <button class="destroy"></button>
+            <button class="destroy" @click="removeTodo(todo)"></button>
           </div>
         </li>
       </ul>
