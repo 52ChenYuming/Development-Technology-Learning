@@ -68,6 +68,9 @@ import Header from '@/components/Header.vue';
 import VueImageVerify from '@/components/VueImageVerify.vue';
 import { Toast } from 'vant';
 import axios from '../utils/axios'
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 const username = ref('')
 const password = ref('')
 const type = ref('login')
@@ -81,18 +84,27 @@ const changeType = (t) => {
 const onSubmit = async () => {
 
   if (type.value == 'login') {
-    console.log('登录');
-    console.log(verifyRef.value.imgCode);
+    // console.log(verifyRef.value.imgCode);
+    // 发请求
+    const { data } = await axios.post('/user/login', {
+      username: username.value,
+      password: password.value
+    })
+    console.log(data);
+    Toast.success('登录成功')
+    localStorage.setItem('token',data.token)
+    router.push('/')
   } else {
     if (verify.value != verifyRef.value.imgCode) { //输入的验证码不等于生成的
       Toast.fail('验证码错误');
       return
     }
     // 发请求
-    await axios.post('/user/register', {
+    const { data } = await axios.post('/user/register', {
       username: username.value,
       password: password.value
     })
+    console.log(data);
     Toast.success('注册成功')
     type.value = 'login'
   }
