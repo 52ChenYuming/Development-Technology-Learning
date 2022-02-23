@@ -31,13 +31,13 @@
       </van-pull-refresh>
     </div>
     <!-- 添加账单 -->
-    <div class="add">
+    <div class="add" @click="addToggle">
       <van-icon name="records" />
     </div>
     <!-- 类型弹框 -->
     <pop-type ref="popRef" @select="select"></pop-type>
     <pop-month ref="popMonthRef" @select="selectMonth"></pop-month>
-    <pop-add></pop-add>
+    <pop-add ref="popAddRef"></pop-add>
   </div>
 </template>
 
@@ -61,7 +61,7 @@ const state = reactive({
 
 const popRef = ref(null)
 const popMonthRef = ref(null)
-
+const popAddRef = ref(null)
 // 类型弹窗
 const toggle = () => {
   popRef.value.toggle()
@@ -89,9 +89,9 @@ const onRefresh = () => {
 
 }
 // 添加账单
-// const addToggle = () => {
-
-// }
+const addToggle = () => {
+  popAddRef.value.toggle()
+}
 
 </script>
 

@@ -2,19 +2,24 @@
   <van-popup v-model:show="show" round position="bottom">
     <div class="add-wrap">
       <div class="header">
-        <span class="close">
+        <span class="close" @click="toggle">
           <van-icon name="cross" />
         </span>
         <van-button class="add-btn" size="small" type="success">确定</van-button>
       </div>
-
       <div class="filter">
         <div class="type">
-          <span class="expense">支出</span>
-          <span class="income">收入</span>
+          <span
+            :class="{ expense: true, active: payType === 'expense' }"
+            @click="changeType('expense')"
+          >支出</span>
+          <span
+            :class="{ income: true, active: payType === 'income' }"
+            @click="changeType('income')"
+          >收入</span>
         </div>
-        <div class="time">
-          02-22
+        <div class="time" @click="showDay = true">
+          {{ $filters.transDay(date) }}
           <van-icon name="arrow-down" />
         </div>
       </div>
@@ -27,20 +32,20 @@
       <div class="type-wrap">
         <!-- 支出 -->
         <div class="type-body" v-if="payType == 'expense'">
-          <div class="type-item" v-for="item in 10" :key="item">
+          <div class="type-item" v-for="item in expense" :key="item">
             <span class="iconfont-wrap expense">
-              <van-icon name="shop-o" />
+              <van-icon :name="typeMap[item.id].name" />
             </span>
-            <span>餐饮</span>
+            <span>{{item.name}}</span>
           </div>
         </div>
         <!-- 收入 -->
         <div class="type-body" v-else>
-          <div class="type-item" v-for="item in 10" :key="item">
+          <div class="type-item" v-for="item in income" :key="item">
             <span class="iconfont-wrap expense">
-              <van-icon name="cash-o" />
+              <van-icon :name="typeMap[item.id].name" />
             </span>
-            <span>工资</span>
+            <span>{{item.name}}</span>
           </div>
         </div>
       </div>
@@ -48,25 +53,72 @@
       <!-- 添加备注 -->
       <div class="remark">添加备注</div>
 
-      <van-number-keyboard :show="show" @blur="show = true" @input="onInput" @delete="onDelete" extra-key="."/>
+      <van-number-keyboard
+        :show="show"
+        @blur="show = true"
+        @input="onInput"
+        @delete="onDelete"
+        extra-key="."
+      />
     </div>
+    <!-- 选择时间 -->
+    <van-popup v-model:show="showDay" round position="bottom" :style="{ height: '46%' }">
+      <van-datetime-picker
+        v-model="date"
+        type="date"
+        title="选择时间"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :formatter="formatter"
+        @confirm="choseDay"
+        @cancel="showDay = false"
+      />
+    </van-popup>
   </van-popup>
 </template>
 
 
 
 <script>
-import { reactive, toRefs } from "vue"
+import axios from "axios"
+import { onMounted, reactive, toRefs } from "vue"
+import { typeMap } from '../utils'
 
 export default {
   setup() {
     const state = reactive({
       show: true,
-      payType: 'expense'
+      payType: 'expense', //账单类型
+      showDay: true,
+      date: new Date(), //账单时间
+      expense: [], //支出类型
+      income: [], //收入类型
+      typeMap: typeMap,
+    })
+    const toggle = () => {
+      state.show = !state.show
+    }
+    // 切换收入支出类型
+    const changeType = (item) => {
+      state.payType = item
+    }
+    // 选中时间
+    const choseDay = (value) => {
+      // console.log(value);
+      state.date = value
+    }
+    onMounted(async () => {
+      const { data: { list } } = await axios.get('/type/list')
+      state.expense = list.filter(i => i.type === '1')
+      state.income = list.filter(i => i.type === '2')
     })
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      toggle,
+      changeType,
+      choseDay
     }
+
   }
 }
 
