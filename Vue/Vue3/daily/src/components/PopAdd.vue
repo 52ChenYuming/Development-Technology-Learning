@@ -1,100 +1,112 @@
 <template>
   <van-popup v-model:show="show" round position="bottom">
     <div class="add-wrap">
+
       <div class="header">
         <span class="close" @click="toggle">
           <van-icon name="cross" />
         </span>
-        <van-button class="add-btn" size="small" type="success">确定</van-button>
+        <van-button class="add-btn" size="small" type="success" @click="addBill">确定</van-button>
       </div>
+
       <div class="filter">
         <div class="type">
-          <span
-            :class="{ expense: true, active: payType === 'expense' }"
-            @click="changeType('expense')"
-          >支出</span>
-          <span
-            :class="{ income: true, active: payType === 'income' }"
-            @click="changeType('income')"
-          >收入</span>
+          <span @click="changeType('expense')" :class="{expense: true, active: payType == 'expense'}">支出</span>
+          <span @click="changeType('income')" :class="{income: true, active: payType == 'income'}">收入</span>
         </div>
-        <div class="time" @click="showDay = true">
-          {{ $filters.transDay(date) }}
-          <van-icon name="arrow-down" />
-        </div>
+        <div class="time" @click="showDay = true">{{ $filters.transDay(date) }}<i class="iconfont icon-down"></i></div>
       </div>
 
       <div class="money">
-        <span class="sufix">$</span>
-        <span class="amount animation">123.5</span>
+        <span class="sufix">￥</span>
+        <span class="amount animation">{{amount}}</span>
       </div>
 
       <div class="type-wrap">
         <!-- 支出 -->
         <div class="type-body" v-if="payType == 'expense'">
-          <div class="type-item" v-for="item in expense" :key="item">
-            <span class="iconfont-wrap expense">
+          <div class="type-item" v-for="item in expense" :key="item" @click="choseType(item)">
+            <span class="iconfont-wrap expense" :class="{ 'active': currentType.id == item.id }">
               <van-icon :name="typeMap[item.id].name" />
             </span>
-            <span>{{item.name}}</span>
+            <span>{{ item.name }}</span>
           </div>
         </div>
         <!-- 收入 -->
         <div class="type-body" v-else>
-          <div class="type-item" v-for="item in income" :key="item">
-            <span class="iconfont-wrap expense">
+          <div class="type-item" v-for="item in income" :key="item" @click="choseType(item)">
+            <span class="iconfont-wrap expense" :class="{ 'active': currentType.id == item.id }">
               <van-icon :name="typeMap[item.id].name" />
             </span>
-            <span>{{item.name}}</span>
+            <span>{{ item.name }}</span>
           </div>
         </div>
       </div>
 
-      <!-- 添加备注 -->
-      <div class="remark">添加备注</div>
-
+      <div class="remark" @click="remarkVisible = true" v-if="remark">{{remark}}</div>
+      <div class="remark" @click="remarkVisible = true" v-else>添加备注</div>
+      
       <van-number-keyboard
-        :show="show"
-        @blur="show = true"
+        :show="true"
+        extra-key="."
         @input="onInput"
         @delete="onDelete"
-        extra-key="."
       />
     </div>
     <!-- 选择时间 -->
-    <van-popup v-model:show="showDay" round position="bottom" :style="{ height: '46%' }">
+    <van-popup
+      v-model:show="showDay"
+      round
+      position="bottom"
+      :style="{ height: '46%' }"
+    >
       <van-datetime-picker
         v-model="date"
         type="date"
         title="选择时间"
-        :min-date="minDate"
-        :max-date="maxDate"
-        :formatter="formatter"
         @confirm="choseDay"
         @cancel="showDay = false"
       />
+
     </van-popup>
+    <!-- 备注 -->
+    <van-dialog v-model:show="remarkVisible" title="备注" show-cancel-button>
+      <van-field 
+        v-model="remark" 
+        label="备注" 
+        placeholder="请输入备注" 
+        maxlength="10"
+        type="textarea"
+        show-word-limit
+      />
+    </van-dialog>
+
   </van-popup>
 </template>
 
-
-
 <script>
-import axios from "axios"
-import { onMounted, reactive, toRefs } from "vue"
+import { reactive, toRefs } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
+import axios from '../utils/axios'
 import { typeMap } from '../utils'
-
+import dayjs from 'dayjs'
+import { Toast } from 'vant'
 export default {
   setup() {
     const state = reactive({
-      show: true,
-      payType: 'expense', //账单类型
-      showDay: true,
-      date: new Date(), //账单时间
-      expense: [], //支出类型
-      income: [], //收入类型
+      show: false,
+      payType: 'expense', // 账单类型
+      showDay: false,
+      date: new Date(), // 账单时间
+      expense: [], // 支出的类型
+      income: [], // 收入的类型
       typeMap: typeMap,
+      currentType: {id: 1, name: '餐饮', type: '1', user_id: 0}, // 花销的类型
+      remarkVisible: false,
+      remark: '', // 备注
+      amount: '' // 金额
     })
+
     const toggle = () => {
       state.show = !state.show
     }
@@ -102,29 +114,77 @@ export default {
     const changeType = (item) => {
       state.payType = item
     }
+
     // 选中时间
     const choseDay = (value) => {
       // console.log(value);
       state.date = value
+      state.showDay = false
     }
-    onMounted(async () => {
+
+    onMounted(async() => {
       const { data: { list } } = await axios.get('/type/list')
       state.expense = list.filter(i => i.type === '1')
       state.income = list.filter(i => i.type === '2')
+      // console.log(state.expense, state.income);
     })
+
+    // 选择花销的类型
+    const choseType = (item) => {
+      // console.log(item);
+      state.currentType = item
+    }
+
+    // 键盘输入
+    const onInput = (value) => {
+      console.log(value);
+      if (value == '.' && state.amount.includes('.')) return
+      // 有小数情况，只保留两位
+      if (value !== '.' && state.amount.includes('.') && state.amount && state.amount.split('.')[1].length >= 2) return
+      state.amount += value
+    }
+    const onDelete = () => {
+      state.amount = state.amount.slice(0, state.amount.length - 1)
+    }
+
+    // 添加账单
+    const addBill = async() => {
+      if (!state.amount) {
+        Toast.fail('请输入金额')
+        return
+      }
+      const params = {
+        amount: Number(state.amount).toFixed(2),
+        type_id: state.currentType.id,
+        type_name: state.currentType.name,
+        date: dayjs(state.date).unix() * 1000,
+        pay_type: state.payType == 'expense' ? 1 : 2,
+        remark: state.remark || ''
+      }
+      const result = await axios.post('/bill/add', params)
+      console.log(result);
+      state.show = false
+      state.remark = ''
+      state.payType = 'expense'
+      state.currentType = state.expense[0]
+      state.date = new Date()
+      state.amount = ''
+      Toast.success('添加成功')
+    }
+
     return {
       ...toRefs(state),
       toggle,
       changeType,
-      choseDay
+      choseDay,
+      choseType,
+      onInput,
+      onDelete,
+      addBill
     }
-
   }
 }
-
 </script>
-
-
 
 <style lang="less" scoped>
 @import url("../style/custom.less");
