@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  
+  <ul>
+    <li><a href="#/home">home</a></li>
+    <li><a href="#/about">about</a></li>
+  </ul>
+
+  <div id="routerView"></div>
+
+  <script>
+    var routerView = document.getElementById('routerView')
+
+    window.addEventListener('DOMContentLoaded',onhashChange)
+    // 监听url的变化
+    window.addEventListener('hashchange', onhashChange)
+
+    function onhashChange() {
+      console.log(location.hash);
+      switch (location.hash) {
+        case '#/home': 
+          routerView.innerHTML = 'Home Page' 
+          return
+        case '#/about':
+          routerView.innerHTML = 'About Page'
+          return 
+        default:
+          return 
+      }
+    }
+  </script>
+</body>
+
+</html>

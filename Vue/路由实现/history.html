@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li><a href="/home" class="link1">home</a></li>
+    <li><a href="/about"class="link2">about</a></li>
+  </ul>
+  <div id="routerView"></div>
+
+  <script>
+    // 只要是用pushState 或者 replaceState让URL变化的， 就能用popstate监听到
+    window.addEventListener('popstate',onPopState)
+
+    function onPopState() {
+        console.log(location.pathname);
+        switch(location.pathname) {
+          case '/home': 
+            routerView.innerHTML = '<h2>Home</h2>'
+            return 
+          case '/about':
+            routerView.innerHTML = '<h2>About</h2>'
+            return 
+          default:
+            return 
+        }
+      }
+
+    function onload() {
+      var routerView = document.getElementById('routerView')
+      onPopState()
+
+      // 拦截a标签的点击事件
+      var linkList = document.querySelectorAll('ul li a')
+      console.log(linkList);
+      linkList.forEach(el => {
+        el.addEventListener('click', function(e){
+          e.preventDefault()
+          console.log(e);
+          history.pushState(null,'',el.getAttribute('href'))
+          onPopState()
+        })
+      })
+    }
+    
+    window.addEventListener('DOMContentLoaded', onload)
+
+  </script>
+</body>
+</html>
