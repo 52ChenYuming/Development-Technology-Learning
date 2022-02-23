@@ -50,13 +50,15 @@ import { reactive, ref } from 'vue';
 import dayjs from 'dayjs';
 import CardItem from '../components/CardItem.vue';
 import PopAdd from '../components/PopAdd.vue';
+import axios from '../utils/axios';
 
 const state = reactive({
   currentSelect: {},
   currentTime: dayjs(new Date()).format('YYYY-MM'),
   loading: false,
   finished: false,
-  refreshing: false
+  refreshing: false,
+  page:1
 })
 
 const popRef = ref(null)
@@ -82,7 +84,7 @@ const selectMonth = (item) => {
 }
 // 加载列表数据
 const onLoad = () => {
-
+  getBillList
 }
 // 下拉刷新
 const onRefresh = () => {
@@ -93,6 +95,11 @@ const addToggle = () => {
   popAddRef.value.toggle()
 }
 
+// 获取账单列表
+const getBillList = async() => {
+  const { data } = await axios.get(`/bill/list?date=${state.currentTime}&ttype_id=${state.currentSelect.id || 'all'}&page=${state.page}&page_size=5`)
+  console.log(data);
+}
 </script>
 
 
