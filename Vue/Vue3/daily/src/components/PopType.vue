@@ -54,9 +54,7 @@ export default {
       // state.show = false  
       ctx.emit('select',item)
     }
-    const select = (item) => {
-      console.log(item, '----');
-    }
+
     onMounted(async () => {
       const { data: { list } } = await axios.get('/type/list')
       console.log(list);

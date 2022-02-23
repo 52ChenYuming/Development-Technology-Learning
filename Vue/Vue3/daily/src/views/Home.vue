@@ -2,20 +2,42 @@
   <div class="home">
     <div class="header">
       <div class="type-wrap" @click="toggle">
-        <span class="title">{{state.currentSelect.name || '全部类型'}}</span>
+        <span class="title">{{ state.currentSelect.name || '全部类型' }}</span>
         <van-icon name="more-o" />
       </div>
       <div class="data-wrap">
-        <span class="time">
-          2022-2-22
+        <span class="time" @click="monthToggle">
+          {{ state.currentTime }}
           <van-icon name="arrow-down" />
         </span>
         <span class="expense">总支出￥312321</span>
         <span class="income">总收入￥542321</span>
       </div>
     </div>
+    <div class="content-wrap">
+      <van-pull-refresh v-model="state.refreshing" @refresh="onRefresh">
+        <van-list
+          v-model:loading="state.loading"
+          :finished="state.finished"
+          finished-text="没有更多了"
+          @load="onLoad"
+        >
+        <card-item></card-item>
+        <card-item></card-item>
+        <card-item></card-item>
+        <card-item></card-item>
+        
+        </van-list>
+      </van-pull-refresh>
+    </div>
+    <!-- 添加账单 -->
+    <div class="add">
+      <van-icon name="records" />
+    </div>
     <!-- 类型弹框 -->
     <pop-type ref="popRef" @select="select"></pop-type>
+    <pop-month ref="popMonthRef" @select="selectMonth"></pop-month>
+    <pop-add></pop-add>
   </div>
 </template>
 
@@ -23,14 +45,22 @@
 
 <script setup>
 import PopType from '@/components/PopType.vue';
+import PopMonth from '@/components/PopMonth.vue';
 import { reactive, ref } from 'vue';
+import dayjs from 'dayjs';
+import CardItem from '../components/CardItem.vue';
+import PopAdd from '../components/PopAdd.vue';
 
 const state = reactive({
-  currentSelect: {}
+  currentSelect: {},
+  currentTime: dayjs(new Date()).format('YYYY-MM'),
+  loading: false,
+  finished: false,
+  refreshing: false
 })
 
 const popRef = ref(null)
-
+const popMonthRef = ref(null)
 
 // 类型弹窗
 const toggle = () => {
@@ -41,6 +71,27 @@ const select = (item) => {
   // console.log(item, '----');
   state.currentSelect = item
 }
+// 年月的弹窗
+const monthToggle = () => {
+  popMonthRef.value.toggle()
+}
+
+const selectMonth = (item) => {
+  console.log(item);
+  state.currentTime = item
+}
+// 加载列表数据
+const onLoad = () => {
+
+}
+// 下拉刷新
+const onRefresh = () => {
+
+}
+// 添加账单
+// const addToggle = () => {
+
+// }
 
 </script>
 
