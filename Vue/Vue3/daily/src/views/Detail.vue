@@ -6,10 +6,7 @@
         <span
           :class="{ 'expense': state.detail.pay_type == 1, 'income': state.detail.pay_type == 2 }"
         >
-          <i
-            class="iconfont"
-            :class="state.detail.type_id ? state.typeMap[state.detail.type_id].icon : ''"
-          ></i>
+          <van-icon :name="state.detail.type_id ? state.typeMap[state.detail.type_id].name : ''"></van-icon>
         </span>
         <span>{{ state.detail.type_name || '' }}</span>
       </div>
@@ -79,7 +76,7 @@ const deleteDetail = () => {
     title: '删除',
     message: '确认删除账单？',
   })
-    .then(async() => {
+    .then(async () => {
       // on confirm
       await axios.post('/bill/delete', { id })
       Toast.success('删除成功')

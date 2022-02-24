@@ -3,7 +3,7 @@
     <div class="header">
       <div class="type-wrap" @click="toggle">
         <span class="title">{{ state.currentSelect.name || '全部类型' }}</span>
-        <i class="iconfont icon-type"></i>
+        <van-icon name="more-o" />
       </div>
       <div class="data-wrap">
         <span class="time" @click="monthToggle">{{state.currentTime}}<i class="iconfont icon-down"></i>
@@ -68,6 +68,7 @@ const toggle = () => {
 const select = (item) => {
   // console.log(item, '-----');
   state.currentSelect = item
+  onRefresh()
 }
 // 年月的弹窗
 const monthToggle = () => {
@@ -77,10 +78,16 @@ const monthToggle = () => {
 const selectMonth = (item) => {
   // console.log(item);
   state.currentTime = item
+  onRefresh()
 }
 
 // 加载列表数据
 const onLoad = () => {
+  // 上拉加载更多
+  if (!state.refreshing && state.page < state.totalPage) {
+    state.page++
+    state.loading = true
+  }
   getBillList()
 }
 // 下拉刷新
@@ -88,6 +95,7 @@ const onRefresh = () => {
   state.finished = false
   state.page = 1
   state.refreshing = true
+  state.loading = true
   onLoad()
 }
 
@@ -104,6 +112,7 @@ const getBillList = async() => {
     state.list = []
     state.refreshing = false
   }
+  state.loading = false
   state.list = state.list.concat(data.list)
   state.totalExpense = data.totalExpense.toFixed(2)
   state.totalIncome = data.totalIncome.toFixed(2)
