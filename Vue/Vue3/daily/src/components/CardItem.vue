@@ -1,24 +1,73 @@
 <template>
   <van-cell-group class="item">
     <div class="header-date">
-      <div>2022-02-22</div>
+      <div>{{ bill.date }}</div>
       <div class="money">
         <span>
-          <b>支</b>12.00
+          <b>支</b>
+          {{ expense }}
         </span>
         <span>
-          <b>收</b>50.00
+          <b>收</b>
+          {{ income }}
         </span>
       </div>
     </div>
 
-    <van-cell title="餐饮" value="-12.00" label="14:30 下午茶" />
+    <van-cell
+      :class="{ 'expense': item.pay_type == 1, 'income': item.pay_type == 2 }"
+      v-for="item in bill.bills"
+      :key="item.id"
+      :title="item.type_name"
+      :value="`${item.pay_type == 1 ? '-' : '+'}${item.amount}`"
+      :label="`${$filters.transTime(item.date)} ${item.remark ? (' | ' + item.remark) : ''}`"
+      @click="goToDetail(item)"
+    />
   </van-cell-group>
 </template>
 
 <script>
+import { reactive, toRefs } from '@vue/reactivity'
+import { useRouter } from 'vue-router'
 export default {
+  props: {
+    bill: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
+  setup(props) {
+    const router = useRouter()
+    const state = reactive({
+      expense: 0,
+      income: 0
+    })
 
+    const cal = () => {
+      let expenseAmount = 0
+      props.bill.bills.filter(i => i.pay_type == 1).forEach(item => {
+        expenseAmount += Number(item.amount)
+        state.expense = expenseAmount.toFixed(2)
+      })
+      let incomeAmount = 0
+      props.bill.bills.filter(i => i.pay_type == 2).forEach((item) => {
+        incomeAmount += Number(item.amount)
+        state.income = incomeAmount.toFixed(2)
+      })
+    }
+    cal()
+
+    const goToDetail = (item) => {
+      router.push({ path: '/detail', query: { id: item.id }})
+    }
+
+    return {
+      ...toRefs(state),
+      goToDetail
+    }
+  }
 }
 </script>
 
@@ -51,6 +100,19 @@ export default {
         }
       }
     }
+  }
+}
+</style>
+<style lang="less">
+@import url("../style/custom.less");
+.expense {
+  .van-cell__value {
+    color: @color-text-base;
+  }
+}
+.income {
+  .van-cell__value {
+    color: @text-warning;
   }
 }
 </style>

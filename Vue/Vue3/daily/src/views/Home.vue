@@ -3,15 +3,13 @@
     <div class="header">
       <div class="type-wrap" @click="toggle">
         <span class="title">{{ state.currentSelect.name || '全部类型' }}</span>
-        <van-icon name="more-o" />
+        <i class="iconfont icon-type"></i>
       </div>
       <div class="data-wrap">
-        <span class="time" @click="monthToggle">
-          {{ state.currentTime }}
-          <van-icon name="arrow-down" />
+        <span class="time" @click="monthToggle">{{state.currentTime}}<i class="iconfont icon-down"></i>
         </span>
-        <span class="expense">总支出￥312321</span>
-        <span class="income">总收入￥542321</span>
+        <span class="expense">总支出￥{{state.totalExpense}}</span>
+        <span class="income">总收入￥{{state.totalIncome}}</span>
       </div>
     </div>
     <div class="content-wrap">
@@ -22,11 +20,7 @@
           finished-text="没有更多了"
           @load="onLoad"
         >
-        <card-item></card-item>
-        <card-item></card-item>
-        <card-item></card-item>
-        <card-item></card-item>
-        
+          <CardItem v-for="(item, index) in state.list" :key="index" :bill="item"/>
         </van-list>
       </van-pull-refresh>
     </div>
@@ -35,22 +29,20 @@
       <van-icon name="records" />
     </div>
     <!-- 类型弹框 -->
-    <pop-type ref="popRef" @select="select"></pop-type>
-    <pop-month ref="popMonthRef" @select="selectMonth"></pop-month>
-    <pop-add ref="popAddRef"></pop-add>
+    <PopType ref="popRef" @select="select"></PopType>
+    <PopMonth ref="popMonthRef" @select="selectMonth"></PopMonth>
+    <PopAdd ref="popAddRef" @refresh="onRefresh"></PopAdd>
   </div>
 </template>
 
-
-
 <script setup>
-import PopType from '@/components/PopType.vue';
-import PopMonth from '@/components/PopMonth.vue';
-import { reactive, ref } from 'vue';
-import dayjs from 'dayjs';
-import CardItem from '../components/CardItem.vue';
-import PopAdd from '../components/PopAdd.vue';
-import axios from '../utils/axios';
+import { reactive, ref } from '@vue/reactivity';
+import PopType from '../components/PopType.vue';
+import PopMonth from '../components/PopMonth.vue';
+import CardItem from '../components/CardItem.vue'
+import PopAdd from '../components/PopAdd.vue'
+import dayjs from 'dayjs'
+import axios from '../utils/axios'
 
 const state = reactive({
   currentSelect: {},
@@ -58,7 +50,11 @@ const state = reactive({
   loading: false,
   finished: false,
   refreshing: false,
-  page:1
+  page: 1,
+  list: [],
+  totalExpense: 0,
+  totalIncome: 0,
+  totalPage: 1
 })
 
 const popRef = ref(null)
@@ -70,7 +66,7 @@ const toggle = () => {
 }
 
 const select = (item) => {
-  // console.log(item, '----');
+  // console.log(item, '-----');
   state.currentSelect = item
 }
 // 年月的弹窗
@@ -79,17 +75,22 @@ const monthToggle = () => {
 }
 
 const selectMonth = (item) => {
-  console.log(item);
+  // console.log(item);
   state.currentTime = item
 }
+
 // 加载列表数据
 const onLoad = () => {
-  getBillList
+  getBillList()
 }
 // 下拉刷新
 const onRefresh = () => {
-
+  state.finished = false
+  state.page = 1
+  state.refreshing = true
+  onLoad()
 }
+
 // 添加账单
 const addToggle = () => {
   popAddRef.value.toggle()
@@ -97,11 +98,20 @@ const addToggle = () => {
 
 // 获取账单列表
 const getBillList = async() => {
-  const { data } = await axios.get(`/bill/list?date=${state.currentTime}&ttype_id=${state.currentSelect.id || 'all'}&page=${state.page}&page_size=5`)
+  const { data } = await axios.get(`/bill/list?date=${state.currentTime}&type_id=${state.currentSelect.id || 'all'}&page=${state.page}&page_size=5`)
   console.log(data);
+  if (state.refreshing) {
+    state.list = []
+    state.refreshing = false
+  }
+  state.list = state.list.concat(data.list)
+  state.totalExpense = data.totalExpense.toFixed(2)
+  state.totalIncome = data.totalIncome.toFixed(2)
+  state.totalPage = data.totalPage
+  if (state.page >= state.totalPage) state.finished = true
 }
-</script>
 
+</script>
 
 <style lang="less" scoped>
 @import url("../style/custom.less");
@@ -124,6 +134,7 @@ const getBillList = async() => {
     font-size: 14px;
     padding: 20px 20px;
     z-index: 100;
+    box-sizing: border-box;
     .type-wrap {
       background-color: #50ca84;
       display: inline-block;

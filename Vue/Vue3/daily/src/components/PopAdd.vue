@@ -1,7 +1,6 @@
 <template>
   <van-popup v-model:show="show" round position="bottom">
     <div class="add-wrap">
-
       <div class="header">
         <span class="close" @click="toggle">
           <van-icon name="cross" />
@@ -11,15 +10,24 @@
 
       <div class="filter">
         <div class="type">
-          <span @click="changeType('expense')" :class="{expense: true, active: payType == 'expense'}">支出</span>
-          <span @click="changeType('income')" :class="{income: true, active: payType == 'income'}">收入</span>
+          <span
+            @click="changeType('expense')"
+            :class="{ expense: true, active: payType == 'expense' }"
+          >支出</span>
+          <span
+            @click="changeType('income')"
+            :class="{ income: true, active: payType == 'income' }"
+          >收入</span>
         </div>
-        <div class="time" @click="showDay = true">{{ $filters.transDay(date) }}<i class="iconfont icon-down"></i></div>
+        <div class="time" @click="showDay = true">
+          {{ $filters.transDay(date) }}
+          <i class="iconfont icon-down"></i>
+        </div>
       </div>
 
       <div class="money">
         <span class="sufix">￥</span>
-        <span class="amount animation">{{amount}}</span>
+        <span class="amount animation">{{ amount }}</span>
       </div>
 
       <div class="type-wrap">
@@ -43,23 +51,13 @@
         </div>
       </div>
 
-      <div class="remark" @click="remarkVisible = true" v-if="remark">{{remark}}</div>
+      <div class="remark" @click="remarkVisible = true" v-if="remark">{{ remark }}</div>
       <div class="remark" @click="remarkVisible = true" v-else>添加备注</div>
-      
-      <van-number-keyboard
-        :show="true"
-        extra-key="."
-        @input="onInput"
-        @delete="onDelete"
-      />
+
+      <van-number-keyboard :show="true" extra-key="." @input="onInput" @delete="onDelete" />
     </div>
     <!-- 选择时间 -->
-    <van-popup
-      v-model:show="showDay"
-      round
-      position="bottom"
-      :style="{ height: '46%' }"
-    >
+    <van-popup v-model:show="showDay" round position="bottom" :style="{ height: '46%' }">
       <van-datetime-picker
         v-model="date"
         type="date"
@@ -67,20 +65,18 @@
         @confirm="choseDay"
         @cancel="showDay = false"
       />
-
     </van-popup>
     <!-- 备注 -->
     <van-dialog v-model:show="remarkVisible" title="备注" show-cancel-button>
-      <van-field 
-        v-model="remark" 
-        label="备注" 
-        placeholder="请输入备注" 
+      <van-field
+        v-model="remark"
+        label="备注"
+        placeholder="请输入备注"
         maxlength="10"
         type="textarea"
         show-word-limit
       />
     </van-dialog>
-
   </van-popup>
 </template>
 
@@ -92,7 +88,15 @@ import { typeMap } from '../utils'
 import dayjs from 'dayjs'
 import { Toast } from 'vant'
 export default {
-  setup() {
+  props: {
+    detail: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
+  setup(props, ctx) {
     const state = reactive({
       show: false,
       payType: 'expense', // 账单类型
@@ -101,7 +105,7 @@ export default {
       expense: [], // 支出的类型
       income: [], // 收入的类型
       typeMap: typeMap,
-      currentType: {id: 1, name: '餐饮', type: '1', user_id: 0}, // 花销的类型
+      currentType: { id: 1, name: '餐饮', type: '1', user_id: 0 }, // 花销的类型
       remarkVisible: false,
       remark: '', // 备注
       amount: '' // 金额
@@ -122,7 +126,7 @@ export default {
       state.showDay = false
     }
 
-    onMounted(async() => {
+    onMounted(async () => {
       const { data: { list } } = await axios.get('/type/list')
       state.expense = list.filter(i => i.type === '1')
       state.income = list.filter(i => i.type === '2')
@@ -148,7 +152,7 @@ export default {
     }
 
     // 添加账单
-    const addBill = async() => {
+    const addBill = async () => {
       if (!state.amount) {
         Toast.fail('请输入金额')
         return
@@ -170,6 +174,7 @@ export default {
       state.date = new Date()
       state.amount = ''
       Toast.success('添加成功')
+      ctx.emit('refresh')
     }
 
     return {
