@@ -88,7 +88,7 @@ import { typeMap } from '../utils'
 import dayjs from 'dayjs'
 import { Toast } from 'vant'
 export default {
-  props: {
+  props: { // 只读
     detail: {
       type: Object,
       default: () => {
@@ -97,18 +97,23 @@ export default {
     }
   },
   setup(props, ctx) {
+    const id = props.detail && props.detail.id
+    console.log(props);
     const state = reactive({
       show: false,
-      payType: 'expense', // 账单类型
+      payType: id ? (props.detail.pay_type == 1 ? 'expense' : 'income') : 'expense', // 账单类型
       showDay: false,
-      date: new Date(), // 账单时间
+      date: id ? dayjs(Number(props.detail.date)).$d : new Date(), // 账单时间
       expense: [], // 支出的类型
       income: [], // 收入的类型
       typeMap: typeMap,
-      currentType: { id: 1, name: '餐饮', type: '1', user_id: 0 }, // 花销的类型
+      currentType: id ? {
+        id: props.detail.type_id,
+        name: props.detail.type_name
+      } : {}, // 花销的类型
       remarkVisible: false,
-      remark: '', // 备注
-      amount: '' // 金额
+      remark: id ? props.detail.remark : '', // 备注
+      amount: id ? props.detail.amount : '' // 金额
     })
 
     const toggle = () => {
@@ -130,7 +135,7 @@ export default {
       const { data: { list } } = await axios.get('/type/list')
       state.expense = list.filter(i => i.type === '1')
       state.income = list.filter(i => i.type === '2')
-      // console.log(state.expense, state.income);
+      console.log(props);
     })
 
     // 选择花销的类型
@@ -165,18 +170,26 @@ export default {
         pay_type: state.payType == 'expense' ? 1 : 2,
         remark: state.remark || ''
       }
-      const result = await axios.post('/bill/add', params)
-      console.log(result);
-      state.show = false
-      state.remark = ''
-      state.payType = 'expense'
-      state.currentType = state.expense[0]
-      state.date = new Date()
-      state.amount = ''
-      Toast.success('添加成功')
-      ctx.emit('refresh')
+      if (id) { //编辑
+        params.id = id
+        await axios.post('/bill/update', params)
+        state.show = false
+        state.remark = ''
+        Toast.success('修改成功')
+        ctx.emit('refresh')
+      } else { //新增
+        const result = await axios.post('/bill/add', params)
+        console.log(result);
+        state.show = false
+        state.remark = ''
+        state.payType = 'expense'
+        state.currentType = state.expense[0]
+        state.date = new Date()
+        state.amount = ''
+        Toast.success('添加成功')
+        ctx.emit('refresh')
+      }
     }
-
     return {
       ...toRefs(state),
       toggle,

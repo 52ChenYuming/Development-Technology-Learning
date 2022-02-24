@@ -3,13 +3,20 @@
     <Header title="账单详情" />
     <div class="card">
       <div class="type">
-        <span :class="{ expense: state.detail.pay_type == 1, 'income': state.detail.pay_type == 2 }">
-          <van-icon :name="state.detail.type_id ? state.typeMap[state.detail.type_id].name : ''" />
+        <span
+          :class="{ 'expense': state.detail.pay_type == 1, 'income': state.detail.pay_type == 2 }"
+        >
+          <i
+            class="iconfont"
+            :class="state.detail.type_id ? state.typeMap[state.detail.type_id].icon : ''"
+          ></i>
         </span>
         <span>{{ state.detail.type_name || '' }}</span>
       </div>
+
       <div class="amount expense" v-if="state.detail.pay_type == 1">-{{ state.detail.amount }}</div>
       <div class="amount income" v-else>+{{ state.detail.amount }}</div>
+
       <div class="info">
         <div class="time">
           <span>记录时间</span>
@@ -20,30 +27,29 @@
           <span>{{ state.detail.remark || '-' }}</span>
         </div>
       </div>
+
       <div class="operation">
         <span @click="deleteDetail">
-          <van-icon name="delete-o" />删除
+          <van-icon name="delete" />删除
         </span>
         <span @click="openModal">
           <van-icon name="edit" />编辑
         </span>
       </div>
-      <PopAdd ref="popAddRef"></PopAdd>
+
+      <PopAdd v-if="state.detail.id" ref="popAddRef" :detail="state.detail" @refresh="getDetail"></PopAdd>
     </div>
   </div>
 </template>
 
-
-
 <script setup>
-import Header from '@/components/Header.vue';
-import { onMounted, reactive, ref } from 'vue';
+import Header from '../components/Header.vue'
 import { useRoute, useRouter } from 'vue-router';
-import axios from '../utils/axios';
-import { typeMap } from '@/utils';
-import { Dialog, Toast } from 'vant';
-import PopAdd from '@/components/PopAdd.vue';
-
+import axios from '../utils/axios'
+import { onMounted, reactive, ref } from '@vue/runtime-core';
+import { typeMap } from '../utils'
+import { Toast, Dialog } from 'vant'
+import PopAdd from '../components/PopAdd.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -53,7 +59,6 @@ const state = reactive({
   detail: {},
   typeMap
 })
-
 
 onMounted(() => {
   getDetail()
@@ -72,10 +77,10 @@ const openModal = () => {
 const deleteDetail = () => {
   Dialog.confirm({
     title: '删除',
-    message:
-      '确认删除账单吗？',
+    message: '确认删除账单？',
   })
-    .then(async () => {
+    .then(async() => {
+      // on confirm
       await axios.post('/bill/delete', { id })
       Toast.success('删除成功')
       router.back()
@@ -87,8 +92,6 @@ const deleteDetail = () => {
 }
 
 </script>
-
-
 
 <style lang="less" scoped>
 @import url("../style/custom.less");
