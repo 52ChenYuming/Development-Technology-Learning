@@ -6,7 +6,7 @@
         <van-icon name="more-o" />
       </div>
       <div class="data-wrap">
-        <span class="time" @click="monthToggle">{{state.currentTime}}<i class="iconfont icon-down"></i>
+        <span class="time" @click="monthToggle">{{state.currentTime}}<van-icon name="arrow-down" />
         </span>
         <span class="expense">总支出￥{{state.totalExpense}}</span>
         <span class="income">总收入￥{{state.totalIncome}}</span>

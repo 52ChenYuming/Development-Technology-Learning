@@ -2,7 +2,7 @@
   <div class="block"></div>
   <van-nav-bar class="header" :title="title" left-text="返回" left-arrow @click-left="back">
     <template #right>
-      <i class="iconfont icon-more"></i>
+      <van-icon name="more-o" @click="more"/>
     </template>
   </van-nav-bar>
 </template>
@@ -11,7 +11,7 @@
 
 <script>
 import { useRouter } from "vue-router"
-
+import { Toast } from "vant"
 
 export default {
   props: {
@@ -25,8 +25,12 @@ export default {
     const back = () => {
       router.back()
     }
+    const more = () => {
+      Toast.success('此功能还没开发哦！')
+    }
     return {
-      back
+      back,
+      more
     }
   }
 }

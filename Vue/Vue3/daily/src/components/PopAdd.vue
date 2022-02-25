@@ -21,7 +21,7 @@
         </div>
         <div class="time" @click="showDay = true">
           {{ $filters.transDay(date) }}
-          <i class="iconfont icon-down"></i>
+          <van-icon name="arrow-down" />
         </div>
       </div>
 

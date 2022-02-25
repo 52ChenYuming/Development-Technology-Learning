@@ -7,16 +7,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRouter, useRoute} from 'vue-router'
+import { onMounted, ref } from "vue";
+import { useRouter, } from 'vue-router'
 
 const router = useRouter()
-const route = useRoute()
 const active = ref('/home')
+
+onMounted(() => {
+  active.value = router.currentRoute.value.path
+})
 
 router.afterEach(() => {
   // console.log(route.path);
-  active.value = route.path
+  active.value = router.currentRoute.value.path
 })
 </script>
 

@@ -47,7 +47,6 @@ import { onMounted, reactive, ref } from '@vue/runtime-core';
 import { typeMap } from '../utils'
 import { Toast, Dialog } from 'vant'
 import PopAdd from '../components/PopAdd.vue'
-
 const route = useRoute()
 const router = useRouter()
 const { id } = route.query
@@ -56,21 +55,17 @@ const state = reactive({
   detail: {},
   typeMap
 })
-
 onMounted(() => {
   getDetail()
 })
-
 const getDetail = async () => {
   const { data } = await axios.get(`/bill/detail?id=${id}`)
   console.log(data);
   state.detail = data
 }
-
 const openModal = () => {
   popAddRef.value.toggle()
 }
-
 const deleteDetail = () => {
   Dialog.confirm({
     title: '删除',
@@ -85,9 +80,7 @@ const deleteDetail = () => {
     .catch(() => {
       // on cancel
     });
-
 }
-
 </script>
 
 <style lang="less" scoped>
