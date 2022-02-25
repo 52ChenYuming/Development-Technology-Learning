@@ -1,31 +1,37 @@
-import { ColumnProps } from './store'
-export function generateFitUrl(column: ColumnProps, width: number, height: number) {
-  if (column.avatar) {
-    column.avatar.fitUrl = column.avatar.url + `?x-oss-process=image/resize,m_pad,h_${height},w_${width}`
+var CQueue = function() {
+  this.stack1 = []
+  this.stack2 = []
+};
+
+/** 
+ * @param {number} value
+ * @return {void}
+ */
+CQueue.prototype.appendTail = function(value) {
+  this.stack1.push(value)
+};
+
+/**
+ * @return {number}
+ */
+CQueue.prototype.deleteHead = function() {
+  if (this.stack2.length) {  //代表出队列的栈有数据，直接出栈表示出队列
+    return this.stack2.pop()
   } else {
-    column.avatar = {
-      fitUrl: require('@/assets/column.jpg')
+    while(this.stack1.length) {
+      this.stack2.push(this.stack1.pop()) //当代表入队列的栈有数据，将入队列的栈移入出队列的栈
+    }
+    if (!this.stack2.length) {
+      return -1
+    } else {
+      return this.stack2.pop()
     }
   }
-}
-interface CheckCondition {
-  format?: string[];
-  size?: number;
-}
-type ErrorType = 'size' | 'format' | null
-export function beforeUploadCheck(file: File, condition: CheckCondition) {
-  const { format, size } = condition
-  const isValidFormat = format ? format.includes(file.type) : true
-  const isValidSize = size ? (file.size / 1024 / 1024 < size) : true
-  let error: ErrorType = null
-  if (!isValidFormat) {
-    error = 'format'
-  }
-  if (!isValidSize) {
-    error = 'size'
-  }
-  return {
-    passed: isValidFormat && isValidSize,
-    error
-  }
-}
+};
+
+/**
+ * Your CQueue object will be instantiated and called as such:
+ * var obj = new CQueue()
+ * obj.appendTail(value)
+ * var param_2 = obj.deleteHead()
+ */
