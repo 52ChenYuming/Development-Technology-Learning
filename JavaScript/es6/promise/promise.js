@@ -15,6 +15,7 @@ function marry() {
     }, 1000)
   })
 }
+
 function baby() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
