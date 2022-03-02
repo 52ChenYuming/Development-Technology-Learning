@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <item :num="num" v-for="(num,index) in list" :key="index">{{num}}</item>
+    </ul>
+    <button @click="change">change</button>
+  </div>
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data () {
+        return {
+          list: [
+            1, 2, 3
+          ]
+        }
+      },
+      methods: {
+        change() {
+          this.list.reverse()
+        }
+      },
+      components: {
+        item: {
+          props: ['num'],
+          template: `
+          <div>
+            {{num}}
+          </div>`
+        }
+      }
+    })
+  </script>
+</body>
+</html>
