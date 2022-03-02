@@ -1,23 +1,26 @@
-// 冒泡排序，注意不要和选择排序混淆
-function bubbleSort(a) {
-  for (let i = 0; i < a.length; i++) {
-    for (let j = 0; j < a.length - i - 1; j++) {
-      if (a[j] > a[j + 1]) {
-        let temp = a[j];
-        a[j] = a[j + 1];
-        a[j + 1] = temp;
-      }
-    }
-  }
-  console.log(a);
-  return a;
-}
+// var minArray = function (numbers) {
+//   let l = 0
+//   let r = numbers.length - 1
+//   while (l < r) {
+//     let mid = Math.floor((l + r) / 2)
+//     if (numbers[mid] > numbers[r]) {
+//       l = mid + 1
+//     } else {
+//       r = mid
+//     }
+//     console.log(l,r);
+//   }
+//   return numbers[l]
+// };
+// minArray([3, 3, 1, 3])
 
-// 这里j<a.length-i-1的原因是后面i个数已经比较了，所以减去i避免重复比较
-for (let i = 0; i < a.length; i++) {
-  for (let j = 0; j < a.length - i - 1; j++) {//核心代码
-    if (a[j] > a[j + 1]) {
-      // 交换a[j]和a[j+1]
-    }
+var findMin = function(nums) {
+  let left = 0, right = nums.length - 1
+  while (left < right) {
+      const mid = Math.floor((left + right) / 2)
+      if (nums[mid] > nums[right]) left = mid + 1
+      else if(nums[mid] < nums)
   }
-}
+  return nums[left]
+};
+findMin([3, 3, 1, 3])

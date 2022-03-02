@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ReqParams } from '../type/user'
 
+
 interface UserState {
   auths: string[]
 }
@@ -13,8 +14,9 @@ export const useUserStore = defineStore({
   actions: {
     async login(params: ReqParams) { 
       setTimeout(() => { // 模拟登录接口
-        this.auths = ['蜗牛']
+        this.auths = ['cym']
       }, 1000)
     }
-  }
+  },
+  persist: true
 })

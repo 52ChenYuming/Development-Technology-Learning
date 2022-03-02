@@ -10,7 +10,6 @@ function a(e, ee) {
 Function.prototype.myapply = function (context) {
 
   if (typeof this !== 'function') {
-
     throw new TypeError('Error');
   }
 

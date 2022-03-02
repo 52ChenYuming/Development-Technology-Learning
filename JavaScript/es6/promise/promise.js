@@ -5,8 +5,6 @@ function xq() {
       resolve();//promise生效
     }, 2000)
   })
-
-
 }
 
 function marry() {
@@ -30,3 +28,4 @@ function baby2() {
 }
 
 xq().then(marry).then(baby).then(baby2);
+  

@@ -8,6 +8,13 @@ export const accessRoutes: RouteRecordRaw[] = [
     name: 'app',
     component: BasicLayout ,
     meta: { title: '管理平台' },
+    children: [
+      {
+        path: '/app/home',
+        component: () => import('../views/home/index.vue'),
+        name: 'home'
+      }
+    ]
   }
 ]
 
