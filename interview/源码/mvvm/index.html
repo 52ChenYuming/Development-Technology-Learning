@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const student = {
+      'first-name': 'jessica',
+      'last-name': 'bre',
+      'height': '180',
+      'weight': '70'
+    }
+// view
+    const root = document.createElement('ul');
+    const nameLi = document.createElement('li')
+    const nameLabel = document.createElement('span')
+    nameLabel.textContent = 'Name: '
+    const name_ = document.createElement('span')
+    name.textContent = student['first-name'] + ' ' + student['last-name']
+    nameLi.appendChild(nameLabel)
+    nameLabel.appendChild(name_)
+
+    const heightLi = document.createElement('li')
+    const heightLabel = document.createElement('span')
+    // height._text = student[]
+    root.appendChild(nameLi)
+    document.body.appendChild(root)
+  </script>
+
+</body>
+
+</html>
