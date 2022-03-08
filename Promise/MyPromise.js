@@ -1,24 +1,25 @@
 class MyPromise {
-  state = 'pending' // 状态 ,pending resolved rejected
-  value = undefined //成功后的值
-  reason = undefined //失败后的原因
+  state = 'pending' // 状态，'pending' 'fulfilled' 'rejected'
+  value = undefined // 成功后的值
+  reason = undefined // 失败后的原因
 
-  resolveCallbacks = [] // 当pending状态，存储成功的回调
-  rejectedCallbacks = [] //当pending状态，存储失败的回调
+  resolveCallbacks = [] // pending 状态下，存储成功的回调
+  rejectCallbacks = [] // pending 状态下，存储失败的回调
 
   constructor(fn) {
     const resolveHandler = (value) => {
       if (this.state === 'pending') {
-        this.state = 'resolved'
+        this.state = 'fulfilled'
         this.value = value
         this.resolveCallbacks.forEach(fn => fn(this.value))
       }
     }
+
     const rejectHandler = (reason) => {
       if (this.state === 'pending') {
         this.state = 'rejected'
         this.reason = reason
-        this.rejectedCallbacks.forEach(fn => fn(this.reason))
+        this.rejectCallbacks.forEach(fn => fn(this.reason))
       }
     }
 
@@ -28,13 +29,13 @@ class MyPromise {
       rejectHandler(err)
     }
   }
-  // 当 pending 状态下，fn1 和 fn2 会被存储到 callbacks 中
+
   then(fn1, fn2) {
     fn1 = typeof fn1 === 'function' ? fn1 : (v) => v
     fn2 = typeof fn2 === 'function' ? fn2 : (e) => e
 
     if (this.state === 'pending') {
-      const p1 = new MyPromise((resolve,reject) => {
+      const p1 = new MyPromise((resolve, reject) => {
         this.resolveCallbacks.push(() => {
           try {
             const newValue = fn1(this.value)
@@ -43,10 +44,11 @@ class MyPromise {
             reject(err)
           }
         })
-        this.rejectedCallbacks.push(() => {
+
+        this.rejectCallbacks.push(() => {
           try {
-            const newValue = fn2(this.reason)
-            reject(newValue) //p1.reason
+            const newReason = fn2(this.reason)
+            reject(newReason)
           } catch (err) {
             reject(err)
           }
@@ -55,7 +57,7 @@ class MyPromise {
       return p1
     }
 
-    if (this.state === 'resolved') {
+    if (this.state === 'fulfilled') {
       const p1 = new MyPromise((resolve, reject) => {
         try {
           const newValue = fn1(this.value)
@@ -71,17 +73,66 @@ class MyPromise {
       const p1 = new MyPromise((resolve, reject) => {
         try {
           const newReason = fn2(this.reason)
-          resolve(newReason)
+          reject(newReason)
         } catch (err) {
           reject(err)
         }
       })
       return p1
     }
-
   }
-  // catch是then的一个语法糖
+
+  // 就是 then 的一个语法糖，简单模式
   catch(fn) {
-
+    return this.then(null, fn)
   }
+}
+
+MyPromise.resolve = function (value) {
+  return new MyPromise((resolve, reject) => resolve(value))
+}
+MyPromise.reject = function (reason) {
+  return new MyPromise((resolve, reject) => reject(reason))
+}
+
+MyPromise.all = function (promiseList = []) {
+  const p1 = new MyPromise((resolve, reject) => {
+    const result = [] // 存储 promiseList 所有的结果
+    const length = promiseList.length
+    let resolvedCount = 0
+
+    promiseList.forEach(p => {
+      p.then(data => {
+        result.push(data)
+
+        // resolvedCount 必须在 then 里面做 ++
+        // 不能用 index
+        resolvedCount++
+        if (resolvedCount === length) {
+          // 已经遍历到了最后一个 promise
+          resolve(result)
+        }
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  })
+  return p1
+}
+
+MyPromise.race = function (promiseList = []) {
+  let resolved = false // 标记
+  const p1 = new Promise((resolve, reject) => {
+    promiseList.forEach(p => {
+      p.then(data => {
+        if (!resolved) {
+          resolve(data)
+          resolved = true
+        }
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+  })
+  return p1
 }

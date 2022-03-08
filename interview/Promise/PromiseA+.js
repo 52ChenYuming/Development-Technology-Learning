@@ -63,7 +63,7 @@ myPromised.prototype.then = function (onFufilled, onRejected) {
 
       that.rejectedCallbacks.push(() => {
         try {
-          const x = onFufilled(that.value)
+          const x = onRejected(that.value)
           resolutionProcedure(promise2,x,resolve,reject)
         } catch (error) { 
           reject(error)
