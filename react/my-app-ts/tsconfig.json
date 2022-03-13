@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false, // 不需要显示的声明变量的类型any
+    "target": "es5", // 编译后JavaScript的版本, ES5，ES6，ES2015，ES2016，ES2017，ES2018
+    "lib": [
+      "dom", // document.getElementById("root")
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true, // 允许混合编译JavaScript文件
+    "skipLibCheck": true,
+    "esModuleInterop": true, // 允许我们使用commonjs文件的方式import默认文件
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext", // 配置的是代码的模块系统 Nodejs的CommonJS 、ES6标准的esnext、requirejs
+    "moduleResolution": "node", // 决定了我们编译器的工作方式
+    "resolveJsonModule": true,
+    "isolatedModules": true,// 编译器会将每个文件当做单独的模块来使用
+    "noEmit": true, // 当发生错误时，编译器不要生成JavaScript 代码
+    "jsx": "react-jsx" // 语序编译器支持编译React代码
+  },
+  "include": [
+    "src"
+  ]
+}
