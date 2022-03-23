@@ -1,26 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="wrap">
+    <input type="text" class="form-control" />
+    <button @click="handleAdd">添加</button>
+  </div>
+  <ListItem :list="list"></ListItem>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { ref } from 'vue';
+import ListItem from './components/ListItem.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+const list = ref(['javascript', 'html', 'css'])
+const value = ref('')
+
+const handleAdd = () => {
+  list.value.push(value.value)
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

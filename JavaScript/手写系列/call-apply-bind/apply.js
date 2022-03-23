@@ -15,7 +15,7 @@ Function.prototype.myapply = function (context) {
 
   context = context || window;
 
-  context.fn = this;
+  context.fn = this; //b.fn = a;相当于往b对象中添加键值对属性fn:a()
 
   //  和apply的区别是只有一个参数，所以取出第二个参数就可以了(第二个参数是数组，需要将数组结构为一个个元素)
   let result = context.fn(...arguments[1]);
