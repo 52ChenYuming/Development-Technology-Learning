@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // 引入store
 import store from '../../redux/store'
 // 引入actionCreator，专门用于创建action对象
-import { createIncreamentAction, createDecreament, createDecreamentAction } from '../../redux/count_action'
+import { createIncreamentAction, createDecreamentAction, createIncreamentAsynAction } from '../../redux/count_action'
 import './index.css'
 export default class Count extends Component {
 
@@ -31,7 +31,7 @@ export default class Count extends Component {
   incrementAsync = () => {
     const { value } = this.selectNumber
     setTimeout(() => {
-      store.dispatch(createIncreamentAction(value * 1))
+      store.dispatch(createIncreamentAsynAction(value * 1))
     }, 500)
   }
   render() {

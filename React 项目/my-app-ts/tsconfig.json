@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false, // 不需要县式的声明变量类型any
+    "target": "es5", //编译后目标js版本
+    "lib": [
+      "dom", // document.getElementById('root')
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true, // 允许混合编译js文件
+    "skipLibCheck": true,
+    "esModuleInterop": true, //允许我们使用commonjs的方式import默认文件
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext", // 配置的是我们代码的模块系统， node.js 的 CommonJs、ES6 的eslint
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src"
+  ]
+}

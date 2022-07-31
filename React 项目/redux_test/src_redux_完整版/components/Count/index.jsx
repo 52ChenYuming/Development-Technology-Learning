@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // 引入store
 import store from '../../redux/store'
 // 引入actionCreator，专门用于创建action对象
-import { createIncreamentAction, createDecreament, createDecreamentAction } from '../../redux/count_action'
+import { createIncreamentAction, createDecreamentAction } from '../../redux/count_action'
 import './index.css'
 export default class Count extends Component {
 

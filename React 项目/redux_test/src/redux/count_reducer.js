@@ -10,10 +10,10 @@ function countReducer(preState = initState, action) {
   // 从action对象中获取：type、data
   const { type, data } = action
   switch (type) {
-    case 'INCREMENT': // 如果是+
+    case INCREMENT: // 如果是+
       console.log(preState);
       return preState + data
-    case 'DECREMENT': // 如果是-
+    case DECREMENT: // 如果是-
       return preState - data
     default:
       return preState
