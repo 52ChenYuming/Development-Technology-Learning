@@ -13,5 +13,11 @@ const defaultState: LanguageState = {
 }
 
 export default (state = defaultState, action) => {
+  switch (action.type) {
+    case "change_language" :
+      return {...state, language: action.payload}
+    case "add_language" :
+      return {...state, languageList: [...state.languageList, action.payload]}
+  }
   return state
 }

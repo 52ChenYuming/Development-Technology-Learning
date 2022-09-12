@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import axios from 'axios'
 import PubSub from 'pubsub-js'
+
 export default class Search extends Component {
 
   search = () => {
@@ -11,6 +12,7 @@ export default class Search extends Component {
       isFirst: false,
       isLoading: true,
     })
+
     // 发送网络请求--使用fetch发送
     axios.get(`/api1/search/users?q=${keyword}`).then(
       response => {

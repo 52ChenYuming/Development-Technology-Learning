@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PubSub from 'pubsub-js'
 import './index.css'
+
 export default class List extends Component {
   state = {// 初始化状态
     users: [], // users初始值为数组
